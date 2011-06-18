@@ -70,6 +70,8 @@
     <Compile Include="Dialogs\Preferences.cs" />
     <Compile Include="Actions\Preferences.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Dialogs\Rename.cs" />
+    <Compile Include="Actions\Rename.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="..\" />
@@ -95,6 +97,7 @@
     <EmbeddedResource Include="toolbar-add.png" />
     <EmbeddedResource Include="toolbar-remove.png" />
     <EmbeddedResource Include="toolbar-preferences.png" />
+    <EmbeddedResource Include="toolbar-rename.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.icns" />

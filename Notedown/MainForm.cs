@@ -53,6 +53,7 @@ namespace Notedown
             args.Actions.Add(new Actions.Save());
             args.Actions.Add(new Actions.Delete());
             args.Actions.Add(new Actions.Preferences());
+            args.Actions.Add(new Actions.Rename());
             
             // generate and set the menu
             GenerateMenu(args);
@@ -99,6 +100,7 @@ namespace Notedown
                 file.Actions.Add(Actions.Save.ActionID, i++);
                 file.Actions.Add(Actions.New.ActionID, i++);
                 file.Actions.Add(Actions.Delete.ActionID, i++);
+                file.Actions.Add(Actions.Rename.ActionID, i++);
                 
                 window.Actions.Add("mac_performMiniaturize");
                 window.Actions.Add("mac_performZoom");
@@ -118,6 +120,7 @@ namespace Notedown
         {
             args.ToolBar.Add(Actions.New.ActionID);
             args.ToolBar.Add(Actions.Delete.ActionID);
+            args.ToolBar.Add(Actions.Rename.ActionID);
             args.ToolBar.Add(Actions.Preferences.ActionID);
             args.ToolBar.Add(Actions.About.ActionID);
             

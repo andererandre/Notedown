@@ -31,6 +31,26 @@ namespace Notedown
             }
         }
         
+        public bool Rename(string name)
+        {
+            if (!String.Equals(Name, name))
+            {
+                name = name.Replace(Path.DirectorySeparatorChar.ToString(), String.Empty);
+                int i = Dir.LastIndexOf(Name);
+                string dir = Dir.Remove(i, Name.Length).Insert(i, name);
+                
+                if (!File.Exists(dir))
+                {
+                    File.Delete(Dir);
+                    Name = name;
+                    Dir = dir;
+                    File.WriteAllText(Dir, Text, Encoding.UTF8);
+                    return true;
+                }
+            }
+            return false;
+        }
+        
         public override string ToString()
         {
             return Name;
