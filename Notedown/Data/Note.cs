@@ -9,25 +9,25 @@ namespace Notedown
     {
         public string Name;
         public string Text;
-        public string Path;
+        public string Dir;
         
         public Note(string name, string text, string path)
         {
             Name = name;
             Text = text;
-            Path = path;
+            Dir = path;
         }
         
         public void Delete()
         {
-            File.Delete(Path);
+            File.Delete(Dir);
         }
         
         public void Save()
         {
-            if (File.ReadAllText(Path, Encoding.UTF8) != Text)
+            if (File.ReadAllText(Dir, Encoding.UTF8) != Text)
             {
-                File.WriteAllText(Path, Text, Encoding.UTF8);
+                File.WriteAllText(Dir, Text, Encoding.UTF8);
             }
         }
         
@@ -39,14 +39,14 @@ namespace Notedown
     
     public class NoteView
     {
-        private string NotesDir;
+        private string Dir;
         private List<Note> Notes = new List<Note>();
         public Eto.Forms.ListBox ListBox = new Eto.Forms.ListBox();
         public Eto.Forms.TextArea TextArea = new Eto.Forms.TextArea();
         
         public NoteView(string dir)
         {
-            NotesDir = dir;
+            Dir = dir;
             
             TextArea.TextChanged += delegate
             {
@@ -77,7 +77,7 @@ namespace Notedown
             get { return ListBox.SelectedIndex >= 0 ? Notes[ListBox.SelectedIndex] : null; }
         }
         
-        public void AddNote(string name) { AddNote(name, string.Empty, NotesDir + name + ".txt"); }
+        public void AddNote(string name) { AddNote(name, string.Empty, Dir + name + ".txt"); }
         public void AddNote(string name, string text, string file)
         {
             Note note = new Note(name, text, file);
@@ -86,9 +86,9 @@ namespace Notedown
             
             if (!File.Exists(file))
             {
-                if (!Directory.Exists(NotesDir))
+                if (!Directory.Exists(Dir))
                 {
-                    Directory.CreateDirectory(NotesDir);
+                    Directory.CreateDirectory(Dir);
                 }
                 File.WriteAllText(file, text, Encoding.UTF8);
             }
