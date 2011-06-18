@@ -42,7 +42,7 @@ namespace Notedown
         private string NotesDir;
         private List<Note> Notes = new List<Note>();
         public Eto.Forms.ListBox ListBox = new Eto.Forms.ListBox();
-        public Eto.Forms.TextBox TextArea = new Eto.Forms.TextBox();
+        public Eto.Forms.TextArea TextArea = new Eto.Forms.TextArea();
         
         public NoteView(string dir)
         {
