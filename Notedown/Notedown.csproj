@@ -34,21 +34,21 @@
     <Reference Include="System" />
     <Reference Include="MonoMac, Version=0.0.0.0, Culture=neutral" />
     <Reference Include="System.Configuration" />
-    <Reference Include="Eto, Version=1.0.1.36753, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="Eto, Version=1.0.1.30180, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Eto.dll</HintPath>
+      <HintPath>..\..\.References\Eto.dll</HintPath>
     </Reference>
-    <Reference Include="Eto.Platform.Mac, Version=1.0.1.36755, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="Eto.Platform.Gtk, Version=1.0.1.30180, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Eto.Platform.Mac.dll</HintPath>
+      <HintPath>..\..\.References\Eto.Platform.Gtk.dll</HintPath>
     </Reference>
-    <Reference Include="Eto.Platform.Windows, Version=1.0.1.36754, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="Eto.Platform.Mac, Version=1.0.1.30182, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Eto.Platform.Windows.dll</HintPath>
+      <HintPath>..\..\.References\Eto.Platform.Mac.dll</HintPath>
     </Reference>
-    <Reference Include="Eto.Platform.Gtk, Version=1.0.1.36754, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="Eto.Platform.Windows, Version=1.0.1.30181, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Eto.Platform.Gtk.dll</HintPath>
+      <HintPath>..\..\.References\Eto.Platform.Windows.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -5,16 +5,16 @@ using System.Collections.Generic;
 
 namespace Notedown
 {
-    public class Note
+    public class Note : Eto.Forms.IListItem
     {
         public string Name;
-        public string Text;
+        public string Content;
         public string Dir;
         
         public Note(string name, string text, string path)
         {
             Name = name;
-            Text = text;
+            Content = text;
             Dir = path;
         }
         
@@ -25,9 +25,9 @@ namespace Notedown
         
         public void Save()
         {
-            if (File.ReadAllText(Dir, Encoding.UTF8) != Text)
+            if (File.ReadAllText(Dir, Encoding.UTF8) != Content)
             {
-                File.WriteAllText(Dir, Text, Encoding.UTF8);
+                File.WriteAllText(Dir, Content, Encoding.UTF8);
             }
         }
         
@@ -44,16 +44,21 @@ namespace Notedown
                     File.Delete(Dir);
                     Name = name;
                     Dir = dir;
-                    File.WriteAllText(Dir, Text, Encoding.UTF8);
+                    File.WriteAllText(Dir, Content, Encoding.UTF8);
                     return true;
                 }
             }
             return false;
         }
         
-        public override string ToString()
+        public string Text
         {
-            return Name;
+            get { return Name; }
+        }
+        
+        public string Key
+        {
+            get { return Name; }
         }
     }
     
@@ -70,13 +75,13 @@ namespace Notedown
             
             TextArea.TextChanged += delegate
             {
-                Notes[ListBox.SelectedIndex].Text = TextArea.Text;
+                Notes[ListBox.SelectedIndex].Content = TextArea.Text;
             };
             
             ListBox.SelectedIndexChanged += delegate
             {
                 if (ListBox.SelectedIndex < 0) return;
-                TextArea.Text = Notes[ListBox.SelectedIndex].Text;
+                TextArea.Text = Notes[ListBox.SelectedIndex].Content;
             };
         }
         
