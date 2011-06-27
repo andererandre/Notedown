@@ -42,6 +42,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Eto.Platform.Mac.dll</HintPath>
     </Reference>
+    <Reference Include="Eto.Platform.Windows, Version=1.0.1.36754, Culture=neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Eto.Platform.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Eto.Platform.Gtk, Version=1.0.1.36754, Culture=neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Eto.Platform.Gtk.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -76,6 +84,7 @@
   <ItemGroup>
     <Folder Include="..\" />
     <Folder Include="Data\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
@@ -93,11 +102,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
-    <EmbeddedResource Include="toolbar-about.png" />
-    <EmbeddedResource Include="toolbar-add.png" />
-    <EmbeddedResource Include="toolbar-remove.png" />
-    <EmbeddedResource Include="toolbar-preferences.png" />
-    <EmbeddedResource Include="toolbar-rename.png" />
+    <EmbeddedResource Include="Resources\toolbar-about.ico" />
+    <EmbeddedResource Include="Resources\toolbar-add.ico" />
+    <EmbeddedResource Include="Resources\toolbar-preferences.ico" />
+    <EmbeddedResource Include="Resources\toolbar-remove.ico" />
+    <EmbeddedResource Include="Resources\toolbar-rename.ico" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.icns" />

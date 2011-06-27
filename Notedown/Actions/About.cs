@@ -13,7 +13,7 @@ namespace Notedown.Actions
 			this.ID = ActionID;
 			this.MenuText = "About Notedown";
 			this.ToolBarText = "About";
-            this.Icon = new Icon(null, "toolbar-about.png");
+            this.Icon = new Icon(null, "Resources.toolbar-about.ico");
 		}
 		
 		protected override void OnActivated(EventArgs e)
