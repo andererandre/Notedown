@@ -64,24 +64,24 @@ namespace Notedown
     
     public class NoteView
     {
-        private string Dir;
-        private List<Note> Notes = new List<Note>();
+        private string directory;
+        private List<Note> notes = new List<Note>();
         public Eto.Forms.ListBox ListBox = new Eto.Forms.ListBox();
         public Eto.Forms.TextArea TextArea = new Eto.Forms.TextArea();
         
         public NoteView(string dir)
         {
-            Dir = dir;
+            directory = dir;
             
             TextArea.TextChanged += delegate
             {
-                Notes[ListBox.SelectedIndex].Content = TextArea.Text;
+                notes[ListBox.SelectedIndex].Content = TextArea.Text;
             };
             
             ListBox.SelectedIndexChanged += delegate
             {
                 if (ListBox.SelectedIndex < 0) return;
-                TextArea.Text = Notes[ListBox.SelectedIndex].Content;
+                TextArea.Text = notes[ListBox.SelectedIndex].Content;
             };
         }
         
@@ -89,31 +89,31 @@ namespace Notedown
         {
             get
             {
-                return Notes[i];
+                return notes[i];
             }
             set
             {
-                Notes[i] = value;
+                notes[i] = value;
             }
         }
         
         public Note CurrentNote
         {
-            get { return ListBox.SelectedIndex >= 0 ? Notes[ListBox.SelectedIndex] : null; }
+            get { return ListBox.SelectedIndex >= 0 ? notes[ListBox.SelectedIndex] : null; }
         }
         
-        public void AddNote(string name) { AddNote(name, string.Empty, Dir + name + ".txt"); }
+        public void AddNote(string name) { AddNote(name, string.Empty, directory + name + ".txt"); }
         public void AddNote(string name, string text, string file)
         {
             Note note = new Note(name, text, file);
-            Notes.Add(note);
+            notes.Add(note);
             ListBox.Items.Add(note);
             
             if (!File.Exists(file))
             {
-                if (!Directory.Exists(Dir))
+                if (!Directory.Exists(directory))
                 {
-                    Directory.CreateDirectory(Dir);
+                    Directory.CreateDirectory(directory);
                 }
                 File.WriteAllText(file, text, Encoding.UTF8);
             }
@@ -123,14 +123,14 @@ namespace Notedown
         public void DeleteNote(Note note) { DeleteNote(ListBox.Items.IndexOf(note)); }
         public void DeleteNote(int index)
         {
-            Notes[index].Delete();
-            Notes.RemoveAt(index);
+            notes[index].Delete();
+            notes.RemoveAt(index);
             ListBox.Items.RemoveAt(index);
         }
         
         public void Save()
         {
-            foreach (Note note in Notes)
+            foreach (Note note in notes)
             {
                 note.Save();
             }

@@ -24,7 +24,7 @@ namespace Notedown.Dialogs
             var labelTitle = new Label();
             labelTitle.Text = "Notedown";
             labelTitle.Size = new Size(240, 24);
-            labelTitle.Font = new Font(FontFamily.Sans, 16) { Bold = true };
+            labelTitle.Font = new Font(FontFamily.Sans, 16);
             labelTitle.HorizontalAlign = HorizontalAlign.Center;
             
             // label version

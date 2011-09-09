@@ -13,7 +13,6 @@ namespace Notedown
         {
             this.MainForm = new MainForm();
             base.OnInitialized(e);
-            
             this.MainForm.Show();
         }
         
@@ -33,6 +32,7 @@ namespace Notedown
             {
                 generator = Generator.GetGenerator ("Eto.Platform.GtkSharp.Generator, Eto.Platform.Gtk");
             }
+            
             var app = new Program(generator);
             app.Run();
         }

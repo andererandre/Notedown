@@ -8,13 +8,14 @@ namespace Notedown
 {
     public static class Preferences
     {
-        private static Configuration ConfigFile;
+        private static Configuration config;
+        private static string defaultFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + Path.DirectorySeparatorChar + "Notedown" + Path.DirectorySeparatorChar;
         
         public static void Load()
         {
             try
             {
-                ConfigFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             }
             catch (Exception e)
             {
@@ -25,22 +26,21 @@ namespace Notedown
         
         public static void Save()
         {
-            ConfigFile.Save();
+            config.Save();
         }
         
-        private static string DefaultFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + Path.DirectorySeparatorChar + "Notedown" + Path.DirectorySeparatorChar;
         public static string Folder
         {
             get
             {
-                string folder = ConfigFile.AppSettings.Settings["folder"].Value;
-                return String.IsNullOrEmpty(folder) ? DefaultFolder : folder;
+                string folder = config.AppSettings.Settings["folder"].Value;
+                return String.IsNullOrEmpty(folder) ? defaultFolder : folder;
             }
             set
             {
                 string folder = value;
                 if (!folder.EndsWith(Path.DirectorySeparatorChar.ToString())) folder += Path.DirectorySeparatorChar;
-                ConfigFile.AppSettings.Settings["folder"].Value = folder;
+                config.AppSettings.Settings["folder"].Value = folder;
             }
         }
     }

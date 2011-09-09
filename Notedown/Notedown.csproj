@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EB803292-6FC3-4B14-BA01-012B8CBC8C50}</ProjectGuid>
     <ProjectTypeGuids>{1C533B1C-72DD-4CB1-9F6B-BF11D93BCFBE};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Notedown</RootNamespace>
     <AssemblyName>Notedown</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -32,28 +32,31 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="MonoMac, Version=0.0.0.0, Culture=neutral" />
     <Reference Include="System.Configuration" />
-    <Reference Include="Eto, Version=1.0.1.30180, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="MonoMac, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\.References\MonoMac.dll</HintPath>
+    </Reference>
+    <Reference Include="Eto, Version=1.0.1.33256, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\.References\Eto.dll</HintPath>
     </Reference>
-    <Reference Include="Eto.Platform.Gtk, Version=1.0.1.30180, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="Eto.Platform.Gtk, Version=1.0.1.33257, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\.References\Eto.Platform.Gtk.dll</HintPath>
     </Reference>
-    <Reference Include="Eto.Platform.Mac, Version=1.0.1.30182, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="Eto.Platform.Mac, Version=1.0.1.33773, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\.References\Eto.Platform.Mac.dll</HintPath>
     </Reference>
-    <Reference Include="Eto.Platform.Windows, Version=1.0.1.30181, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="Eto.Platform.Windows, Version=1.0.1.33287, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\.References\Eto.Platform.Windows.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Info.plist" />
     <None Include="app.config" />
+    <None Include="Info.plist" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Mono\MonoMac\v0.0\Mono.MonoMac.targets" />

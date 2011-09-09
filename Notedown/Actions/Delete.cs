@@ -13,7 +13,7 @@ namespace Notedown.Actions
 			this.ID = ActionID;
 			this.MenuText = "Delete Note";
 			this.ToolBarText = "Delete";
-            this.Icon = new Icon(null, "Resources.toolbar-remove.ico");
+            this.Icon = new Icon(null, "Notedown.Resources.toolbar-remove.ico");
 		}
 		
 		protected override void OnActivated(EventArgs e)
