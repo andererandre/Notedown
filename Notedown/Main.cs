@@ -20,9 +20,9 @@ namespace Notedown
         {
             Generator generator;
             
-            if (Platform.IsMac)
+            if (Platform.IsLinux)
             {
-                generator = new Eto.Platform.Mac.Generator();
+                generator = Generator.GetGenerator ("Eto.Platform.GtkSharp.Generator, Eto.Platform.Gtk");
             }
             else if (Platform.IsWindows)
             {
@@ -30,7 +30,7 @@ namespace Notedown
             }
             else
             {
-                generator = Generator.GetGenerator ("Eto.Platform.GtkSharp.Generator, Eto.Platform.Gtk");
+                generator = new Eto.Platform.Mac.Generator();
             }
             
             var app = new Program(generator);
