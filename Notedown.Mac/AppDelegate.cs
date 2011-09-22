@@ -3,7 +3,7 @@ using MonoMac.AppKit;
 using MonoMac.Foundation;
 using Eto.Forms;
 
-namespace Notedown
+namespace Notedown.Mac
 {
 	public partial class AppDelegate : Eto.Platform.Mac.AppDelegate
 	{

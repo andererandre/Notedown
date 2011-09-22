@@ -17,7 +17,7 @@ namespace Notedown.Dialogs
             
             // image
             var imageView = new ImageView();
-            imageView.Image = new Icon(null, "Icon.ico");
+            imageView.Image = new Icon(null, "Notedown.Icon.ico");
             imageView.Size = new Size(128, 128);
             
             // label title

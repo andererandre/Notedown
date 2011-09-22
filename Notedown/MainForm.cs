@@ -27,14 +27,6 @@ namespace Notedown
             
             GenerateActions();
             GenerateContent();
-            
-            if (Eto.Misc.Platform.IsMac)
-            {
-                var listView = Notes.ListBox.ControlObject as MonoMac.AppKit.NSScrollView;
-                listView.BorderType = MonoMac.AppKit.NSBorderType.NoBorder;
-                var tableView = listView.DocumentView as MonoMac.AppKit.NSTableView;
-                tableView.SelectionHighlightStyle = MonoMac.AppKit.NSTableViewSelectionHighlightStyle.SourceList;
-            }
         }
         
         private void GenerateActions()

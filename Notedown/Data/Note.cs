@@ -66,8 +66,8 @@ namespace Notedown
     {
         private string directory;
         private List<Note> notes = new List<Note>();
-        public Eto.Forms.ListBox ListBox = new Eto.Forms.ListBox();
-        public Eto.Forms.TextArea TextArea = new Eto.Forms.TextArea();
+        public Eto.Forms.ListBox ListBox = new Eto.Forms.ListBox() { Style = "ListNative" };
+        public Eto.Forms.TextArea TextArea = new Eto.Forms.TextArea() { Style = "TextConsole" };
         
         public NoteView(string dir)
         {

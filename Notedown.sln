@@ -3,18 +3,36 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notedown", "Notedown\Notedown.csproj", "{EB803292-6FC3-4B14-BA01-012B8CBC8C50}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notedown.Windows", "Notedown.Windows\Notedown.Windows.csproj", "{EF466848-A734-453D-8B7C-174BD5FC4F7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notedown.Linux", "Notedown.Linux\Notedown.Linux.csproj", "{462725DB-44CD-46E4-8CBB-BEA6DA5B09C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notedown.Mac", "Notedown.Mac\Notedown.Mac.csproj", "{D7D1A4F4-FF0F-4F8C-85FD-BFBC2EE89FE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{462725DB-44CD-46E4-8CBB-BEA6DA5B09C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{462725DB-44CD-46E4-8CBB-BEA6DA5B09C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{462725DB-44CD-46E4-8CBB-BEA6DA5B09C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{462725DB-44CD-46E4-8CBB-BEA6DA5B09C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7D1A4F4-FF0F-4F8C-85FD-BFBC2EE89FE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7D1A4F4-FF0F-4F8C-85FD-BFBC2EE89FE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7D1A4F4-FF0F-4F8C-85FD-BFBC2EE89FE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7D1A4F4-FF0F-4F8C-85FD-BFBC2EE89FE4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB803292-6FC3-4B14-BA01-012B8CBC8C50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB803292-6FC3-4B14-BA01-012B8CBC8C50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB803292-6FC3-4B14-BA01-012B8CBC8C50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB803292-6FC3-4B14-BA01-012B8CBC8C50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF466848-A734-453D-8B7C-174BD5FC4F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF466848-A734-453D-8B7C-174BD5FC4F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF466848-A734-453D-8B7C-174BD5FC4F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF466848-A734-453D-8B7C-174BD5FC4F7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Notedown\Notedown.csproj
+		StartupItem = Notedown.Mac\Notedown.Mac.csproj
 	EndGlobalSection
 EndGlobal
