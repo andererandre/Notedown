@@ -47,21 +47,11 @@ namespace Notedown.Dialogs
                 Close ();
             };
             
-            // button layout
-            var buttonLayout = new TableLayout (new Panel { Size = new Size(90, 26) }, 3, 1);
-            buttonLayout.Padding = Padding.Empty;
-            buttonLayout.SetColumnScale (0);
-            buttonLayout.SetColumnScale (2);
-            buttonLayout.Add(button, 1, 0);
-            
-            // form layout
-            var layout = new TableLayout(this, 1, 5);
-            layout.Padding = new Padding(0, 10);
-            layout.Add(imageView, 0, 0, true, true);
-            layout.Add(labelTitle, 0, 1);
-            layout.Add (labelVersion, 0, 2);
-            layout.Add(labelCopyright, 0, 3);
-            layout.Add(buttonLayout.Container, 0, 4);
+            // layout
+            var layout = new DynamicLayout(this);
+            layout.AddColumn(imageView, labelTitle, labelVersion, labelCopyright);
+            layout.AddCentered(button);
+            layout.Generate();
 		}
 	}
 }

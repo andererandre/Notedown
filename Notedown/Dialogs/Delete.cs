@@ -11,13 +11,14 @@ namespace Notedown.Dialogs
 		{
             // form
 			this.Text = "Delete Note";
-			this.ClientSize = new Size(300, 100);
+			this.ClientSize = new Size(350, 90);
             this.Resizable = false;
             
-            // label name
-            var labelName = new Label();
-            labelName.Text = "Delete note '" + ((MainForm)Application.Instance.MainForm).Notes.CurrentNote + "'?";
-            labelName.HorizontalAlign = HorizontalAlign.Center;
+            // label description
+            var labelDescription = new Label();
+            labelDescription.Text = "Delete note '" + ((MainForm)Application.Instance.MainForm).Notes.CurrentNote.Name + "'?";
+            labelDescription.HorizontalAlign = HorizontalAlign.Center;
+            labelDescription.VerticalAlign = VerticalAlign.Middle;
             
             // button ok
 			var buttonOk = new Button();
@@ -38,22 +39,24 @@ namespace Notedown.Dialogs
                 this.DialogResult = DialogResult.No;
                 this.Close();
             };
-            
-            // button layout
-            var buttonLayout = new TableLayout(new Panel { Size = new Size(90, 36) }, 4, 1);
-            buttonLayout.Padding = new Padding(0, 5);
-            buttonLayout.SetColumnScale(0);
-            buttonLayout.SetColumnScale(3);
-            buttonLayout.Add(buttonCancel, 1, 0);
-            buttonLayout.Add(buttonOk, 2, 0);
          
-            // form layout
-            var layout = new TableLayout(this, 1, 4);
-            layout.Padding = new Padding(0, 10);
-            layout.SetRowScale(0);
-            layout.SetRowScale(3);
-            layout.Add(labelName, 0, 1);
-            layout.Add(buttonLayout.Container, 0, 2);
+            // layout
+            var layout = new DynamicLayout(this);
+            layout.BeginVertical(new Padding(10, 5), new Size(10, 10));
+            
+            layout.Add(labelDescription);
+            
+            layout.BeginVertical(Padding.Empty, Size.Empty);
+            layout.BeginHorizontal();
+            layout.Add(null, true);
+            layout.Add(buttonCancel);
+            layout.Add(buttonOk);
+            layout.Add(null, true);
+            layout.EndHorizontal();
+            layout.EndVertical();
+            
+            layout.EndVertical();
+            layout.Generate();
 		}
 	}
 }

@@ -13,18 +13,24 @@ namespace Notedown.Dialogs
 		{
             // form
 			this.Text = "Preferences";
-			this.ClientSize = new Size(500, 120);
+			this.ClientSize = new Size(400, 110);
 			this.Resizable = false;
+            
+            // label description
+            var labelDescription = new Label();
+            labelDescription.Text = "Setup up notes preferences";
+            labelDescription.HorizontalAlign = HorizontalAlign.Center;
+            labelDescription.VerticalAlign = VerticalAlign.Middle;
             
             // label name
             var labelFolder = new Label();
             labelFolder.Text = "Notes Folder:";
             labelFolder.HorizontalAlign = HorizontalAlign.Center;
+            labelFolder.VerticalAlign = VerticalAlign.Middle;
             
             // textbox name
             var textBoxFolder = new TextBox();
             textBoxFolder.Text = Notedown.Preferences.Folder;
-            textBoxFolder.Size = new Size(400, 20);
             
             // button ok
 			var buttonOk = new Button();
@@ -46,29 +52,30 @@ namespace Notedown.Dialogs
                 this.Close();
             };
             
-            // textbox layout
-            var textBoxLayout = new TableLayout(new Panel { Size = new Size(90, 30) }, 3, 1);
-            textBoxLayout.Padding = new Padding(0, 5);
-            textBoxLayout.SetColumnScale(0);
-            textBoxLayout.SetColumnScale(2);
-            textBoxLayout.Add(textBoxFolder, 1, 0);
+            // layout
+            var layout = new DynamicLayout(this);
+            layout.BeginVertical(new Padding(10, 5), new Size(10, 10));
             
-            // button layout
-            var buttonLayout = new TableLayout(new Panel { Size = new Size(90, 36) }, 4, 1);
-            buttonLayout.Padding = new Padding(0, 5);
-            buttonLayout.SetColumnScale(0);
-            buttonLayout.SetColumnScale(3);
-            buttonLayout.Add(buttonCancel, 1, 0);
-            buttonLayout.Add(buttonOk, 2, 0);
-         
-            // form layout
-            var layout = new TableLayout(this, 1, 5);
-            layout.Padding = new Padding(0, 10);
-            layout.SetRowScale(0);
-            layout.SetRowScale(4);
-            layout.Add(labelFolder, 0, 1);
-            layout.Add(textBoxLayout.Container, 0, 2);
-            layout.Add(buttonLayout.Container, 0, 3);
+            layout.Add(labelDescription);
+            
+            layout.BeginVertical(Padding.Empty, Size.Empty);
+            layout.BeginHorizontal();
+            layout.Add(labelFolder);
+            layout.Add(textBoxFolder);
+            layout.EndHorizontal();
+            layout.EndVertical();
+            
+            layout.BeginVertical(Padding.Empty, Size.Empty);
+            layout.BeginHorizontal();
+            layout.Add(null, true);
+            layout.Add(buttonCancel);
+            layout.Add(buttonOk);
+            layout.Add(null, true);
+            layout.EndHorizontal();
+            layout.EndVertical();
+            
+            layout.EndVertical();
+            layout.Generate();
             
             // public accessors
             TextBoxFolder = textBoxFolder;

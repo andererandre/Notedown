@@ -13,13 +13,20 @@ namespace Notedown.Dialogs
 		{
             // form
 			this.Text = "New Note";
-			this.ClientSize = new Size(300, 110);
-			this.Resizable = false;
+			this.ClientSize = new Size(350, 110);
+			this.Resizable = true;
+            
+            // label description
+            var labelDescription = new Label();
+            labelDescription.Text = "Add a new note to the list";
+            labelDescription.HorizontalAlign = HorizontalAlign.Center;
+            labelDescription.VerticalAlign = VerticalAlign.Middle;
             
             // label name
             var labelName = new Label();
-            labelName.Text = "Please enter the name of the new note:";
+            labelName.Text = "Name:";
             labelName.HorizontalAlign = HorizontalAlign.Center;
+            labelName.VerticalAlign = VerticalAlign.Middle;
             
             // textbox name
             var textBoxName = new TextBox();
@@ -44,30 +51,31 @@ namespace Notedown.Dialogs
                 this.DialogResult = DialogResult.Cancel;
                 this.Close();
             };
-            
-            // textbox layout
-            var textBoxLayout = new TableLayout(new Panel { Size = new Size(90, 30) }, 3, 1);
-            textBoxLayout.Padding = new Padding(0, 5);
-            textBoxLayout.SetColumnScale(0);
-            textBoxLayout.SetColumnScale(2);
-            textBoxLayout.Add(textBoxName, 1, 0);
-            
-            // button layout
-            var buttonLayout = new TableLayout(new Panel { Size = new Size(90, 36) }, 4, 1);
-            buttonLayout.Padding = new Padding(0, 5);
-            buttonLayout.SetColumnScale(0);
-            buttonLayout.SetColumnScale(3);
-            buttonLayout.Add(buttonCancel, 1, 0);
-            buttonLayout.Add(buttonOk, 2, 0);
          
-            // form layout
-            var layout = new TableLayout(this, 1, 5);
-            layout.Padding = new Padding(0, 10);
-            layout.SetRowScale(0);
-            layout.SetRowScale(4);
-            layout.Add(labelName, 0, 1);
-            layout.Add(textBoxLayout.Container, 0, 2);
-            layout.Add(buttonLayout.Container, 0, 3);
+            // layout
+            var layout = new DynamicLayout(this);
+            layout.BeginVertical(new Padding(10, 5), new Size(10, 10));
+            
+            layout.Add(labelDescription);
+            
+            layout.BeginVertical(Padding.Empty, Size.Empty);
+            layout.BeginHorizontal();
+            layout.Add(labelName);
+            layout.Add(textBoxName);
+            layout.EndHorizontal();
+            layout.EndVertical();
+            
+            layout.BeginVertical(Padding.Empty, Size.Empty);
+            layout.BeginHorizontal();
+            layout.Add(null, true);
+            layout.Add(buttonCancel);
+            layout.Add(buttonOk);
+            layout.Add(null, true);
+            layout.EndHorizontal();
+            layout.EndVertical();
+            
+            layout.EndVertical();
+            layout.Generate();
             
             // public accessors
             TextBoxName = textBoxName;
