@@ -14,7 +14,7 @@ namespace Notedown.Dialogs
             // form
 			this.Text = "New Note";
 			this.ClientSize = new Size(350, 110);
-			this.Resizable = true;
+			this.Resizable = false;
             
             // label description
             var labelDescription = new Label();
