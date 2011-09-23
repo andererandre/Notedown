@@ -9,19 +9,19 @@ namespace Notedown
 {
     public class MainForm : Form
     {
-        public NoteView Notes;
+        public NoteView Notes { get; private set; }
 
         public MainForm()
         {
             this.Text = "Notedown";
             this.Icon = new Icon(null, "Icon.ico");
             this.Size = new Size(1280, 800);
-            
-            Generate();
         }
         
-        public void Generate()
+        public override void OnLoad(EventArgs e)
         {
+            base.OnLoad(e);
+            
             Preferences.Load();
             Notes = NoteView.CreateFromDirectory(Preferences.Folder);
             
@@ -31,13 +31,9 @@ namespace Notedown
         
         private void GenerateActions()
         {
-            // use actions to generate menu & toolbar to share logic
+            // generate action args
             GenerateActionArgs args = new GenerateActionArgs();
-            
-            // generate actions to use in menus and toolbars
             Application.Instance.GetSystemActions(args);
-            
-            // add actions
             args.Actions.Add(new Actions.About());
             args.Actions.Add(new Actions.Quit());
             args.Actions.Add(new Actions.Close());
@@ -47,10 +43,8 @@ namespace Notedown
             args.Actions.Add(new Actions.Preferences());
             args.Actions.Add(new Actions.Rename());
             
-            // generate and set the menu
+            // generate menu and toolbar
             GenerateMenu(args);
-            
-            // generate and set the toolbar
             GenerateToolBar(args);
         }
         
@@ -70,15 +64,14 @@ namespace Notedown
         
         private void GenerateMenu(GenerateActionArgs args)
         {
+            var main = args.Menu.FindAddSubMenu("Notedown", 0);
             var file = args.Menu.FindAddSubMenu("&File", 100);
             var window = args.Menu.FindAddSubMenu("&Window", 900);
             var help = args.Menu.FindAddSubMenu("Help", 1000);
             
+            int i = 0;
             if (Generator.ID == "mac")
             {
-                // OSX style menu
-                int i = 0;
-                var main = args.Menu.FindAddSubMenu("Notedown", 0);
                 main.Actions.Add(Actions.About.ActionID, i++);
                 main.Actions.AddSeparator(i++);
                 main.Actions.Add(Actions.Preferences.ActionID, i++);
@@ -99,7 +92,6 @@ namespace Notedown
             }
             else
             {
-                // windows or gtk style menu
                 file.Actions.Add(Actions.Quit.ActionID);
                 
                 help.Actions.Add(Actions.About.ActionID);
