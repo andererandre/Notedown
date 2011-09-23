@@ -85,6 +85,14 @@ namespace Notedown
             };
         }
         
+        public int Count
+        {
+            get
+            {
+                return notes.Count;
+            }
+        }
+        
         public Note this[int i]
         {
             get

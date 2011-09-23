@@ -19,13 +19,20 @@ namespace Notedown.Actions
 		protected override void OnActivated(EventArgs e)
 		{
 			base.OnActivated(e);
+            var form = (MainForm)Application.Instance.MainForm;
+            
+            if (form.Notes.Count == 0)
+            {
+                MessageBox.Show(form, "No notes available.", MessageBoxButtons.OK, MessageBoxType.Error);
+                return;
+            }
 			
 			// show the about dialog
 			var dialog = new Dialogs.Delete();
 			dialog.ShowDialog(Application.Instance.MainForm);
             if (dialog.DialogResult == DialogResult.Yes)
             {
-                ((MainForm)Application.Instance.MainForm).Notes.DeleteNote();
+                form.Notes.DeleteNote();
             }
 		}
 	}

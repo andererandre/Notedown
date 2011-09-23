@@ -19,13 +19,14 @@ namespace Notedown.Actions
 		protected override void OnActivated(EventArgs e)
 		{
 			base.OnActivated(e);
+            var form = (MainForm)Application.Instance.MainForm;
             
             // create new note
             var dialog = new Dialogs.New();
             dialog.ShowDialog(Application.Instance.MainForm);
             if (dialog.DialogResult == DialogResult.Ok)
             {
-                ((MainForm)Application.Instance.MainForm).Notes.AddNote(dialog.TextBoxName.Text);
+                form.Notes.AddNote(dialog.TextBoxName.Text);
             }
 		}
 	}

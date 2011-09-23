@@ -19,17 +19,24 @@ namespace Notedown.Actions
 		protected override void OnActivated(EventArgs e)
 		{
 			base.OnActivated(e);
+            var form = (MainForm)Application.Instance.MainForm;
+            
+            if (form.Notes.Count == 0)
+            {
+                MessageBox.Show(form, "No notes available.", MessageBoxButtons.OK, MessageBoxType.Error);
+                return;
+            }
             
             // create new note
             var dialog = new Dialogs.Rename();
             dialog.ShowDialog(Application.Instance.MainForm);
             if (dialog.DialogResult == DialogResult.Ok)
             {
-                if (((MainForm)Application.Instance.MainForm).Notes.CurrentNote.Rename(dialog.TextBoxName.Text))
+                if (form.Notes.CurrentNote.Rename(dialog.TextBoxName.Text))
                 {
-                    ((MainForm)Application.Instance.MainForm).Notes.ListBox.Invalidate();
+                    form.Notes.ListBox.Invalidate();
                 }
-                else MessageBox.Show(Application.Instance.MainForm, "A note with that name already exists!");
+                else MessageBox.Show(form, "A note with that name already exists!", MessageBoxButtons.OK, MessageBoxType.Error);
             }
 		}
 	}
