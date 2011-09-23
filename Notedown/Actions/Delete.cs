@@ -21,9 +21,9 @@ namespace Notedown.Actions
 			base.OnActivated(e);
 			
 			// show the about dialog
-			var delete = new Dialogs.Delete();
-			delete.ShowDialog(Application.Instance.MainForm);
-            if (delete.DialogResult == DialogResult.Yes)
+			var dialog = new Dialogs.Delete();
+			dialog.ShowDialog(Application.Instance.MainForm);
+            if (dialog.DialogResult == DialogResult.Yes)
             {
                 ((MainForm)Application.Instance.MainForm).Notes.DeleteNote();
             }

@@ -21,11 +21,11 @@ namespace Notedown.Actions
 			base.OnActivated(e);
             
             // open preferences
-            Dialogs.Preferences preferences = new Dialogs.Preferences();
-            preferences.ShowDialog(Application.Instance.MainForm);
-            if (preferences.DialogResult == DialogResult.Ok)
+            var dialog = new Dialogs.Preferences();
+            dialog.ShowDialog(Application.Instance.MainForm);
+            if (dialog.DialogResult == DialogResult.Ok)
             {
-                Notedown.Preferences.Folder = preferences.TextBoxFolder.Text;
+                Notedown.Preferences.Folder = dialog.TextBoxFolder.Text;
                 Notedown.Preferences.Save();
                 ((MainForm)Application.Instance.MainForm).OnLoad(null);
             }

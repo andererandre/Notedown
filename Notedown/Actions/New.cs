@@ -21,11 +21,11 @@ namespace Notedown.Actions
 			base.OnActivated(e);
             
             // create new note
-            Dialogs.New note = new Dialogs.New();
-            note.ShowDialog(Application.Instance.MainForm);
-            if (note.DialogResult == DialogResult.Ok)
+            var dialog = new Dialogs.New();
+            dialog.ShowDialog(Application.Instance.MainForm);
+            if (dialog.DialogResult == DialogResult.Ok)
             {
-                ((MainForm)Application.Instance.MainForm).Notes.AddNote(note.TextBoxName.Text);
+                ((MainForm)Application.Instance.MainForm).Notes.AddNote(dialog.TextBoxName.Text);
             }
 		}
 	}
