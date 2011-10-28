@@ -105,10 +105,12 @@ namespace Notedown
             args.ToolBar.Add(Actions.New.ActionID);
             args.ToolBar.Add(Actions.Delete.ActionID);
             args.ToolBar.Add(Actions.Rename.ActionID);
+            args.ToolBar.AddFlexibleSpace();
             args.ToolBar.Add(Actions.Preferences.ActionID);
-            args.ToolBar.Add(Actions.About.ActionID);
+            //args.ToolBar.Add(Actions.About.ActionID);
             
             this.ToolBar = args.ToolBar.GenerateToolBar();
+            this.ToolBar.Style = "ToolBar";
         }
     }
 }

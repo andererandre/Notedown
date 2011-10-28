@@ -32,7 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
-    <Reference Include="Eto, Version=1.0.1.31755, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="Eto, Version=1.0.1.34327, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\.References\Eto.dll</HintPath>
     </Reference>

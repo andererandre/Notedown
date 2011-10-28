@@ -18,6 +18,9 @@ namespace Notedown
                 v.BorderType = NSBorderType.NoBorder;
                 c.RichText = false;
             });
+            Style.Add("ToolBar", (w) => { var v = w.ControlObject as NSToolbar;;
+                v.DisplayMode = NSToolbarDisplayMode.Icon;
+            });
             
             var generator = new Eto.Platform.Mac.Generator();
             var app = new Program(generator);
