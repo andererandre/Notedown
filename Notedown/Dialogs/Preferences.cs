@@ -13,14 +13,12 @@ namespace Notedown.Dialogs
 		{
             // form
 			this.Text = "Preferences";
-			this.ClientSize = new Size(400, 110);
+			this.ClientSize = new Size(400, 120);
 			this.Resizable = false;
             
-            // label description
-            var labelDescription = new Label();
-            labelDescription.Text = "Setup up notes preferences";
-            labelDescription.HorizontalAlign = HorizontalAlign.Center;
-            labelDescription.VerticalAlign = VerticalAlign.Middle;
+            // box general
+            var boxGeneral = new GroupBox();
+            boxGeneral.Text = "General";
             
             // label name
             var labelFolder = new Label();
@@ -52,18 +50,23 @@ namespace Notedown.Dialogs
                 this.Close();
             };
             
+            // layout box general
+            var layoutBoxGeneral = new DynamicLayout(boxGeneral);
+            layoutBoxGeneral.BeginVertical();
+            
+            layoutBoxGeneral.BeginHorizontal();
+            layoutBoxGeneral.Add(labelFolder);
+            layoutBoxGeneral.Add(textBoxFolder);
+            layoutBoxGeneral.EndHorizontal();
+            
+            layoutBoxGeneral.EndVertical();
+            layoutBoxGeneral.Generate();
+            
             // layout
             var layout = new DynamicLayout(this);
             layout.BeginVertical(new Padding(10, 5), new Size(10, 10));
             
-            layout.Add(labelDescription);
-            
-            layout.BeginVertical(Padding.Empty, Size.Empty);
-            layout.BeginHorizontal();
-            layout.Add(labelFolder);
-            layout.Add(textBoxFolder);
-            layout.EndHorizontal();
-            layout.EndVertical();
+            layout.Add(boxGeneral);
             
             layout.BeginVertical(Padding.Empty, Size.Empty);
             layout.BeginHorizontal();
