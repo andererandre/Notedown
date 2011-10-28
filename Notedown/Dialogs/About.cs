@@ -28,7 +28,7 @@ namespace Notedown.Dialogs
             labelTitle.HorizontalAlign = HorizontalAlign.Center;
             
             // label version
-            var version = Assembly.GetEntryAssembly().GetName().Version;
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
             var labelVersion = new Label();
             labelVersion.Text = string.Format("Version {0}", version);
             labelVersion.HorizontalAlign = HorizontalAlign.Center;
