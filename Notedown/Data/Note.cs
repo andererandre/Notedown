@@ -75,6 +75,7 @@ namespace Notedown
             
             TextArea.TextChanged += delegate
             {
+                if (ListBox.SelectedIndex < 0) return;
                 notes[ListBox.SelectedIndex].Content = TextArea.Text;
             };
             
