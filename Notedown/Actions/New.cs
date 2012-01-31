@@ -11,9 +11,10 @@ namespace Notedown.Actions
 		public New()
 		{
 			this.ID = ActionID;
-			this.MenuText = "New Note";
+			this.MenuText = "&New";
 			this.ToolBarText = "New";
             this.Icon = new Icon(null, "Notedown.Resources.toolbar-add.ico");
+            this.Accelerator = Application.Instance.CommonModifier | Key.N;
 		}
 		
 		protected override void OnActivated(EventArgs e)

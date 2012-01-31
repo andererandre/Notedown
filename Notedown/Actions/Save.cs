@@ -10,7 +10,7 @@ namespace Notedown.Actions
 		public Save()
 		{
 			this.ID = ActionID;
-			this.MenuText = "&Save Notes";
+			this.MenuText = "&Save";
 			this.ToolBarText = "Save";
             this.Accelerator = Application.Instance.CommonModifier | Key.S;
 		}

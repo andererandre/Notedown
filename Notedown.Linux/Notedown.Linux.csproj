@@ -9,7 +9,6 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Notedown.Linux</RootNamespace>
     <AssemblyName>Notedown.Linux</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,12 +34,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Eto, Version=1.0.1.31755, Culture=neutral, PublicKeyToken=null">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Eto">
       <HintPath>..\..\.References\Eto.dll</HintPath>
     </Reference>
-    <Reference Include="Eto.Platform.Gtk, Version=1.0.1.31799, Culture=neutral, PublicKeyToken=null">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Eto.Platform.Gtk">
       <HintPath>..\..\.References\Eto.Platform.Gtk.dll</HintPath>
     </Reference>
   </ItemGroup>

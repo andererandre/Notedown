@@ -11,9 +11,10 @@ namespace Notedown.Actions
 		public Delete()
 		{
 			this.ID = ActionID;
-			this.MenuText = "Delete Note";
+			this.MenuText = "&Delete";
 			this.ToolBarText = "Delete";
             this.Icon = new Icon(null, "Notedown.Resources.toolbar-remove.ico");
+            this.Accelerator = Application.Instance.CommonModifier | Key.D;
 		}
 		
 		protected override void OnActivated(EventArgs e)

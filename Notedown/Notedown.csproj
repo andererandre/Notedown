@@ -9,7 +9,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Notedown</RootNamespace>
     <AssemblyName>Notedown</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,8 +31,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
-    <Reference Include="Eto, Version=1.0.1.34327, Culture=neutral, PublicKeyToken=null">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Eto">
       <HintPath>..\..\.References\Eto.dll</HintPath>
     </Reference>
   </ItemGroup>

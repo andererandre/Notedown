@@ -65,27 +65,32 @@ namespace Notedown
         private void GenerateMenu(GenerateActionArgs args)
         {
             var main = args.Menu.FindAddSubMenu("Notedown", 0);
-            var file = args.Menu.FindAddSubMenu("&File", 100);
-            var window = args.Menu.FindAddSubMenu("&Window", 900);
+            var file = args.Menu.FindAddSubMenu("&File", 0);
+            var edit = args.Menu.FindAddSubMenu("&Edit", 0);
+            var window = args.Menu.FindAddSubMenu("&Window", 1000);
             var help = args.Menu.FindAddSubMenu("Help", 1000);
             
-            int i = 0;
             if (Generator.ID == "mac")
             {
-                main.Actions.Add(Actions.About.ActionID, i++);
-                main.Actions.AddSeparator(i++);
-                main.Actions.Add(Actions.Preferences.ActionID, i++);
-                main.Actions.AddSeparator(i++);
-                main.Actions.Add("mac_hide", i++);
-                main.Actions.Add("mac_hideothers", i++);
-                main.Actions.Add("mac_showall", i++);
-                main.Actions.AddSeparator(i++);
-                main.Actions.Add(Actions.Quit.ActionID, i++);
+                main.Actions.Add(Actions.About.ActionID);
+                main.Actions.AddSeparator();
+                main.Actions.Add(Actions.Preferences.ActionID);
+                main.Actions.AddSeparator();
+                main.Actions.Add("mac_hide");
+                main.Actions.Add("mac_hideothers");
+                main.Actions.Add("mac_showall");
+                main.Actions.AddSeparator();
+                main.Actions.Add(Actions.Quit.ActionID);
                 
-                file.Actions.Add(Actions.Save.ActionID, i++);
-                file.Actions.Add(Actions.New.ActionID, i++);
-                file.Actions.Add(Actions.Delete.ActionID, i++);
-                file.Actions.Add(Actions.Rename.ActionID, i++);
+                edit.Actions.Add("mac_cut");
+                edit.Actions.Add("mac_copy");
+                edit.Actions.Add("mac_paste");
+                edit.Actions.Add("mac_delete");
+                
+                file.Actions.Add(Actions.Save.ActionID);
+                file.Actions.Add(Actions.New.ActionID);
+                file.Actions.Add(Actions.Delete.ActionID);
+                file.Actions.Add(Actions.Rename.ActionID);
                 
                 window.Actions.Add("mac_performMiniaturize");
                 window.Actions.Add("mac_performZoom");

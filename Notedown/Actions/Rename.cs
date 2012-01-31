@@ -11,9 +11,10 @@ namespace Notedown.Actions
 		public Rename()
 		{
 			this.ID = ActionID;
-			this.MenuText = "Rename Note";
+			this.MenuText = "&Rename";
 			this.ToolBarText = "Rename";
             this.Icon = new Icon(null, "Notedown.Resources.toolbar-rename.ico");
+            this.Accelerator = Application.Instance.CommonModifier | Key.R;
 		}
 		
 		protected override void OnActivated(EventArgs e)
