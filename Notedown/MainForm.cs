@@ -82,6 +82,9 @@ namespace Notedown
                 main.Actions.AddSeparator();
                 main.Actions.Add(Actions.Quit.ActionID);
                 
+                edit.Actions.Add("mac_undo");
+                edit.Actions.Add("mac_redo");
+                edit.Actions.AddSeparator();
                 edit.Actions.Add("mac_cut");
                 edit.Actions.Add("mac_copy");
                 edit.Actions.Add("mac_paste");
