@@ -22,7 +22,7 @@ namespace Notedown
                 v.DisplayMode = NSToolbarDisplayMode.Icon;
             });
             
-            var generator = new Eto.Platform.Mac.Generator();
+            var generator = Generator.GetGenerator("Eto.Platform.Mac.Generator, Eto.Platform.Mac");
             var app = new Program(generator);
             app.Run();
         }
