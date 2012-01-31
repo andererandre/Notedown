@@ -7,7 +7,7 @@ namespace Notedown.Dialogs
 {
 	public class Preferences : Dialog
 	{
-        public TextBox TextBoxFolder { get; set; }
+        public TextBox TextBoxFolder { get; private set; }
         
 		public Preferences()
 		{

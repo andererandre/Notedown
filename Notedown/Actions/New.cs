@@ -6,7 +6,7 @@ namespace Notedown.Actions
 {
 	public class New : ButtonAction
 	{
-		public static string ActionID = "new";
+		public const string ActionID = "new";
 		
 		public New()
 		{

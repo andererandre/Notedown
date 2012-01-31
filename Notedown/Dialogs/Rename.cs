@@ -7,7 +7,7 @@ namespace Notedown.Dialogs
 {
 	public class Rename : Dialog
 	{
-        public TextBox TextBoxName { get; set; }
+        public TextBox TextBoxName { get; private set; }
         
 		public Rename()
 		{

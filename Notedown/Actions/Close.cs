@@ -5,7 +5,7 @@ namespace Notedown.Actions
 {
 	public class Close : ButtonAction
 	{
-		public static string ActionID = "close";
+		public const string ActionID = "close";
 		
 		public Close()
 		{

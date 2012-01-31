@@ -6,7 +6,7 @@ namespace Notedown.Actions
 {
 	public class Rename : ButtonAction
 	{
-		public static string ActionID = "rename";
+		public const string ActionID = "rename";
 		
 		public Rename()
 		{

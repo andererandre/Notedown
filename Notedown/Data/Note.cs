@@ -7,9 +7,9 @@ namespace Notedown
 {
     public class Note : Eto.Forms.IListItem
     {
-        public string Name;
-        public string Content;
-        public string Dir;
+        public string Name    { get; private set; }
+        public string Dir     { get; private set; }
+        public string Content { get; set; }
         
         public Note(string name, string text, string path)
         {
@@ -65,13 +65,18 @@ namespace Notedown
     public class NoteView
     {
         private string directory;
-        private List<Note> notes = new List<Note>();
-        public Eto.Forms.ListBox ListBox = new Eto.Forms.ListBox() { Style = "ListNative" };
-        public Eto.Forms.TextArea TextArea = new Eto.Forms.TextArea() { Style = "TextConsole" };
+        private List<Note> notes;
+        
+        public Eto.Forms.ListBox  ListBox  { get; private set; }
+        public Eto.Forms.TextArea TextArea { get; private set; }
         
         public NoteView(string dir)
         {
             directory = dir;
+            notes = new List<Note>();
+            
+            ListBox  = new Eto.Forms.ListBox()  { Style = "ListNative" };
+            TextArea = new Eto.Forms.TextArea() { Style = "TextConsole" };
             
             TextArea.TextChanged += delegate
             {

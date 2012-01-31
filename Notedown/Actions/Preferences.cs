@@ -6,7 +6,7 @@ namespace Notedown.Actions
 {
 	public class Preferences : ButtonAction
 	{
-		public static string ActionID = "preferences";
+		public const string ActionID = "preferences";
 		
 		public Preferences()
 		{
