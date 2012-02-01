@@ -40,6 +40,8 @@
     <Reference Include="Eto.Platform.Windows">
       <HintPath>..\..\.References\Eto.Platform.Windows.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Notedown\Notedown.csproj">

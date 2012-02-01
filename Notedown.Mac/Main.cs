@@ -17,6 +17,7 @@ namespace Notedown
             Style.Add("TextConsole", (w) => { var v = w.ControlObject as NSScrollView; var c = v.DocumentView as NSTextView;
                 v.BorderType = NSBorderType.NoBorder;
                 c.RichText = false;
+				c.Font = NSFont.FromFontName("Monaco", 12);
             });
             Style.Add("ToolBar", (w) => { var v = w.ControlObject as NSToolbar;;
                 v.DisplayMode = NSToolbarDisplayMode.Icon;
