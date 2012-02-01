@@ -102,6 +102,7 @@ namespace Notedown
             }
             else
             {
+                file.Actions.Add(Actions.Preferences.ActionID);
                 file.Actions.Add(Actions.Quit.ActionID);
                 
                 help.Actions.Add(Actions.About.ActionID);
@@ -115,8 +116,8 @@ namespace Notedown
             args.ToolBar.Add(Actions.New.ActionID);
             args.ToolBar.Add(Actions.Delete.ActionID);
             args.ToolBar.Add(Actions.Rename.ActionID);
-            args.ToolBar.AddFlexibleSpace();
-            args.ToolBar.Add(Actions.Preferences.ActionID);
+            //args.ToolBar.AddFlexibleSpace();
+            //args.ToolBar.Add(Actions.Preferences.ActionID);
             //args.ToolBar.Add(Actions.About.ActionID);
             
             this.ToolBar = args.ToolBar.GenerateToolBar();
