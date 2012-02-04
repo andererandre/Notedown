@@ -17,12 +17,13 @@ namespace Notedown
             this.Text = "Notedown";
             this.Icon = new Icon(null, "Notedown.Icon.ico");
             this.Size = new Size(1280, 800);
+            
+            this.Load += HandleLoad;
+            this.Closing += HandleClosing;
         }
         
-        public override void OnLoad(EventArgs e)
+        private void HandleLoad(object sender, EventArgs e)
         {
-            base.OnLoad(e);
-            
             Preferences.Load();
             Notes = NoteView.CreateFromDirectory(Preferences.Folder);
             
@@ -30,10 +31,8 @@ namespace Notedown
             GenerateContent();
         }
         
-        public override void OnClosing(CancelEventArgs e)
+        private void HandleClosing(object sender, CancelEventArgs e)
         {
-            base.OnClosing(e);
-            
             if (Notes.Changed)
             {
                 switch (MessageBox.Show(this, "Do you want to save your unsaved changes?", MessageBoxButtons.YesNoCancel, MessageBoxType.Question))
