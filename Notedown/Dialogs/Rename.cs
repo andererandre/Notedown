@@ -11,28 +11,20 @@ namespace Notedown.Dialogs
         
 		public Rename()
 		{
-            // form
+            /* dialog attributes */
+            
 			this.Text = "Rename Note";
-            this.ClientSize = new Size(350, 110);
+            this.ClientSize = new Size(400, 120);
 			this.Resizable = false;
             
-            // label description
-            var labelDescription = new Label();
-            labelDescription.Text = "Renaming note '" + ((MainForm)Application.Instance.MainForm).Notes.CurrentNote.Name + "'";
-            labelDescription.HorizontalAlign = HorizontalAlign.Center;
-            labelDescription.VerticalAlign = VerticalAlign.Middle;
+            /* dialog controls*/
             
-            // label name
-            var labelName = new Label();
-            labelName.Text = "Name:";
-            labelName.HorizontalAlign = HorizontalAlign.Center;
-            labelName.VerticalAlign = VerticalAlign.Middle;
+            var groupBoxDescription = new GroupBox();
+            groupBoxDescription.Text = "Rename note '" + ((MainForm)Application.Instance.MainForm).Notes.CurrentNote.Name + "'";
             
-            // textbox name
             var textBoxName = new TextBox();
             textBoxName.Size = new Size(200, 20);
             
-            // button ok
 			var buttonOk = new Button();
             buttonOk.Text = "Ok";
 			buttonOk.Size = new Size(90, 26);
@@ -42,7 +34,6 @@ namespace Notedown.Dialogs
                 this.Close();
 			};
             
-            // button cancel
             var buttonCancel = new Button();
             buttonCancel.Text = "Cancel";
             buttonCancel.Size = new Size(90, 26);
@@ -51,19 +42,18 @@ namespace Notedown.Dialogs
                 this.DialogResult = DialogResult.Cancel;
                 this.Close();
             };
-         
-            // layout
+            
+            /* dialog layout */
+            
+            var layoutDescription = new DynamicLayout(groupBoxDescription);
+            layoutDescription.BeginVertical();
+            layoutDescription.Add(textBoxName);
+            layoutDescription.EndVertical();
+            
             var layout = new DynamicLayout(this);
             layout.BeginVertical(new Padding(10, 5), new Size(10, 10));
             
-            layout.Add(labelDescription);
-            
-            layout.BeginVertical(Padding.Empty, Size.Empty);
-            layout.BeginHorizontal();
-            layout.Add(labelName);
-            layout.Add(textBoxName);
-            layout.EndHorizontal();
-            layout.EndVertical();
+            layout.Add(groupBoxDescription);
             
             layout.BeginVertical(Padding.Empty, Size.Empty);
             layout.BeginHorizontal();
@@ -75,9 +65,9 @@ namespace Notedown.Dialogs
             layout.EndVertical();
             
             layout.EndVertical();
-            layout.Generate();
             
-            // public accessors
+            /* dialog accessors */
+            
             TextBoxName = textBoxName;
 		}
 	}

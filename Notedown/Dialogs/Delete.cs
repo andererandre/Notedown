@@ -9,18 +9,19 @@ namespace Notedown.Dialogs
 	{
 		public Delete()
 		{
-            // form
+            /* dialog attributes */
+            
 			this.Text = "Delete Note";
-			this.ClientSize = new Size(350, 90);
+            this.ClientSize = new Size(350, 90);
             this.Resizable = false;
             
-            // label description
+            /* dialog controls */
+            
             var labelDescription = new Label();
             labelDescription.Text = "Delete note '" + ((MainForm)Application.Instance.MainForm).Notes.CurrentNote.Name + "'?";
             labelDescription.HorizontalAlign = HorizontalAlign.Center;
             labelDescription.VerticalAlign = VerticalAlign.Middle;
             
-            // button ok
 			var buttonOk = new Button();
             buttonOk.Text = "Yes";
 			buttonOk.Size = new Size(90, 26);
@@ -30,7 +31,6 @@ namespace Notedown.Dialogs
                 this.Close();
 			};
             
-            // button cancel
             var buttonCancel = new Button();
             buttonCancel.Text = "No";
             buttonCancel.Size = new Size(90, 26);
@@ -39,8 +39,9 @@ namespace Notedown.Dialogs
                 this.DialogResult = DialogResult.No;
                 this.Close();
             };
-         
-            // layout
+            
+            /* dialog layout */
+            
             var layout = new DynamicLayout(this);
             layout.BeginVertical(new Padding(10, 5), new Size(10, 10));
             
@@ -56,7 +57,6 @@ namespace Notedown.Dialogs
             layout.EndVertical();
             
             layout.EndVertical();
-            layout.Generate();
 		}
 	}
 }

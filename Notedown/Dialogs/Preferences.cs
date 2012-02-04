@@ -11,26 +11,20 @@ namespace Notedown.Dialogs
         
 		public Preferences()
 		{
-            // form
+            /* dialog attributes */
+            
 			this.Text = "Preferences";
 			this.ClientSize = new Size(400, 120);
 			this.Resizable = false;
             
-            // box general
-            var boxGeneral = new GroupBox();
-            boxGeneral.Text = "General";
+            /* dialog controls */
             
-            // label name
-            var labelFolder = new Label();
-            labelFolder.Text = "Notes Folder:";
-            labelFolder.HorizontalAlign = HorizontalAlign.Center;
-            labelFolder.VerticalAlign = VerticalAlign.Middle;
+            var groupBoxFolder = new GroupBox();
+            groupBoxFolder.Text = "Notes folder";
             
-            // textbox name
             var textBoxFolder = new TextBox();
             textBoxFolder.Text = Notedown.Preferences.Folder;
             
-            // button ok
 			var buttonOk = new Button();
             buttonOk.Text = "Ok";
 			buttonOk.Size = new Size(90, 26);
@@ -40,7 +34,6 @@ namespace Notedown.Dialogs
                 this.Close();
 			};
             
-            // button cancel
             var buttonCancel = new Button();
             buttonCancel.Text = "Cancel";
             buttonCancel.Size = new Size(90, 26);
@@ -50,23 +43,17 @@ namespace Notedown.Dialogs
                 this.Close();
             };
             
-            // layout box general
-            var layoutBoxGeneral = new DynamicLayout(boxGeneral);
-            layoutBoxGeneral.BeginVertical();
+            /* dialog layout */
             
-            layoutBoxGeneral.BeginHorizontal();
-            layoutBoxGeneral.Add(labelFolder);
-            layoutBoxGeneral.Add(textBoxFolder);
-            layoutBoxGeneral.EndHorizontal();
+            var layoutFolder = new DynamicLayout(groupBoxFolder);
+            layoutFolder.BeginVertical();
+            layoutFolder.Add(textBoxFolder);
+            layoutFolder.EndVertical();
             
-            layoutBoxGeneral.EndVertical();
-            layoutBoxGeneral.Generate();
-            
-            // layout
             var layout = new DynamicLayout(this);
             layout.BeginVertical(new Padding(10, 5), new Size(10, 10));
             
-            layout.Add(boxGeneral);
+            layout.Add(groupBoxFolder);
             
             layout.BeginVertical(Padding.Empty, Size.Empty);
             layout.BeginHorizontal();
@@ -78,9 +65,9 @@ namespace Notedown.Dialogs
             layout.EndVertical();
             
             layout.EndVertical();
-            layout.Generate();
             
-            // public accessors
+            /* dialog accessors */
+            
             TextBoxFolder = textBoxFolder;
 		}
 	}
