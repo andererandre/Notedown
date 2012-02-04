@@ -59,6 +59,7 @@
     <Compile Include="Dialogs\Rename.cs" />
     <Compile Include="Actions\Rename.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Data\NoteView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="..\" />
@@ -77,11 +78,14 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <EmbeddedResource Include="Icon.ico" />
+    <EmbeddedResource Include="Icon.ico">
+      <LogicalName>Icon.ico</LogicalName>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\toolbar-about.ico" />
     <EmbeddedResource Include="Resources\toolbar-add.ico" />
     <EmbeddedResource Include="Resources\toolbar-preferences.ico" />
     <EmbeddedResource Include="Resources\toolbar-remove.ico" />
     <EmbeddedResource Include="Resources\toolbar-rename.ico" />
+    <EmbeddedResource Include="Resources\toolbar-save.ico" />
   </ItemGroup>
 </Project>

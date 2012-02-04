@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.IO;
+using System.ComponentModel;
 using Eto;
 using Eto.Forms;
 using Eto.Drawing;
@@ -14,7 +15,7 @@ namespace Notedown
         public MainForm()
         {
             this.Text = "Notedown";
-            this.Icon = new Icon(null, "Icon.ico");
+            this.Icon = new Icon(null, "Notedown.Icon.ico");
             this.Size = new Size(1280, 800);
         }
         
@@ -27,6 +28,26 @@ namespace Notedown
             
             GenerateActions();
             GenerateContent();
+        }
+        
+        public override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            
+            if (Notes.Changed)
+            {
+                switch (MessageBox.Show(this, "Do you want to save your unsaved changes?", MessageBoxButtons.YesNoCancel, MessageBoxType.Question))
+                {
+                    case DialogResult.Yes:
+                        Notes.Save();
+                        break;
+                    case DialogResult.No:
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                }
+            }
         }
         
         private void GenerateActions()
@@ -103,6 +124,12 @@ namespace Notedown
             else
             {
                 file.Actions.Add(Actions.Preferences.ActionID);
+                file.Actions.AddSeparator();
+                file.Actions.Add(Actions.Save.ActionID);
+                file.Actions.Add(Actions.New.ActionID);
+                file.Actions.Add(Actions.Delete.ActionID);
+                file.Actions.Add(Actions.Rename.ActionID);
+                file.Actions.AddSeparator();
                 file.Actions.Add(Actions.Quit.ActionID);
                 
                 help.Actions.Add(Actions.About.ActionID);

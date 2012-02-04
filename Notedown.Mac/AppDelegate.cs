@@ -22,12 +22,6 @@ namespace Notedown.Mac
         {
             return true;
         }
-        
-        // save all notes when the application is closed
-        public override void WillTerminate (NSNotification notification)
-        {
-            ((MainForm)Application.Instance.MainForm).Notes.Save();
-        }
 	}
 }
 
