@@ -84,7 +84,7 @@ namespace Notedown
         
         private void GenerateMenu(GenerateActionArgs args)
         {
-            var main = args.Menu.FindAddSubMenu("Notedown", 0);
+            var main = args.Menu.FindAddSubMenu(this.Text, 0);
             var file = args.Menu.FindAddSubMenu("&File", 0);
             var edit = args.Menu.FindAddSubMenu("&Edit", 0);
             var window = args.Menu.FindAddSubMenu("&Window", 1000);
