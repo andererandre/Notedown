@@ -10,17 +10,25 @@ namespace Notedown
     {
         static void Main(string[] args)
         {
-            Style.Add("ListNative", (w) => { var v = w.ControlObject as NSScrollView; var c = v.DocumentView as NSTableView;
-                v.BorderType = NSBorderType.NoBorder;
-                c.SelectionHighlightStyle = NSTableViewSelectionHighlightStyle.SourceList;
+            Style.Add<ListBox, NSScrollView>("ListNative", (widget, control) => {
+                control.BorderType = NSBorderType.NoBorder;
+				var list = control.DocumentView as NSTableView;
+                list.SelectionHighlightStyle = NSTableViewSelectionHighlightStyle.SourceList;
             });
-            Style.Add("TextConsole", (w) => { var v = w.ControlObject as NSScrollView; var c = v.DocumentView as NSTextView;
-                v.BorderType = NSBorderType.NoBorder;
-                c.RichText = false;
-				c.Font = NSFont.FromFontName("Monaco", 12);
+			
+            Style.Add<TextArea, NSScrollView>("TextConsole", (widget, control) => {
+                control.BorderType = NSBorderType.NoBorder;
+				var textbox = control.DocumentView as NSTextView;
+                textbox.RichText = false;
+				textbox.Font = NSFont.FromFontName("Monaco", 12);
             });
-            Style.Add("ToolBar", (w) => { var v = w.ControlObject as NSToolbar;;
-                v.DisplayMode = NSToolbarDisplayMode.Icon;
+			
+            Style.Add<ToolBar, NSToolbar>("ToolBar", (widget, control) => {
+                control.DisplayMode = NSToolbarDisplayMode.Icon;
+            });
+			
+            Style.Add<Window, NSWindow> ("MainWindow", (widget, control) => {
+                control.CollectionBehavior |= NSWindowCollectionBehavior.FullScreenPrimary;
             });
             
             var generator = Generator.GetGenerator("Eto.Platform.Mac.Generator, Eto.Platform.Mac");

@@ -17,6 +17,7 @@ namespace Notedown
             this.Text = "Notedown";
             this.Icon = new Icon(null, "Notedown.Icon.ico");
             this.Size = new Size(1280, 800);
+            this.Style = "MainWindow";
             
             this.Load += HandleLoad;
             this.Closing += HandleClosing;
