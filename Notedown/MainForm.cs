@@ -11,7 +11,7 @@ namespace Notedown
     public class MainForm : Form
     {
         public NoteView Notes { get; private set; }
-
+        
         public MainForm()
         {
             this.Text = "Notedown";

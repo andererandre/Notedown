@@ -15,5 +15,5 @@ namespace Notedown
             base.OnInitialized(e);
             this.MainForm.Show();
         }
-	}
+    }
 }

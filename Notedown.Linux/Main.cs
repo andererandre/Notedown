@@ -12,5 +12,5 @@ namespace Notedown
             var app = new Program(generator);
             app.Run();
         }
-	}
+    }
 }

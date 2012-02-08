@@ -12,21 +12,21 @@ namespace Notedown
         {
             Style.Add<ListBox, NSScrollView>("ListNative", (widget, control) => {
                 control.BorderType = NSBorderType.NoBorder;
-				var list = control.DocumentView as NSTableView;
+                var list = control.DocumentView as NSTableView;
                 list.SelectionHighlightStyle = NSTableViewSelectionHighlightStyle.SourceList;
             });
-			
+            
             Style.Add<TextArea, NSScrollView>("TextConsole", (widget, control) => {
                 control.BorderType = NSBorderType.NoBorder;
-				var textbox = control.DocumentView as NSTextView;
+                var textbox = control.DocumentView as NSTextView;
                 textbox.RichText = false;
-				textbox.Font = NSFont.FromFontName("Monaco", 12);
+                textbox.Font = NSFont.FromFontName("Monaco", 12);
             });
-			
+            
             Style.Add<ToolBar, NSToolbar>("ToolBar", (widget, control) => {
                 control.DisplayMode = NSToolbarDisplayMode.Icon;
             });
-			
+            
             Style.Add<Window, NSWindow> ("MainWindow", (widget, control) => {
                 control.CollectionBehavior |= NSWindowCollectionBehavior.FullScreenPrimary;
             });
@@ -35,5 +35,5 @@ namespace Notedown
             var app = new Program(generator);
             app.Run();
         }
-	}
+    }
 }

@@ -6,10 +6,10 @@ using Eto.Misc;
 
 namespace Notedown.Dialogs
 {
-	public class About : Dialog
-	{
-		public About()
-		{
+    public class About : Dialog
+    {
+        public About()
+        {
             /* dialog attributes */
             
             this.Text = "About Notedown";
@@ -42,7 +42,7 @@ namespace Notedown.Dialogs
             button.Size = new Size(90, 26);
             button.Click += delegate
             {
-                Close ();
+                Close();
             };
             
             /* dialog layout */
@@ -50,6 +50,6 @@ namespace Notedown.Dialogs
             var layout = new DynamicLayout(this);
             layout.AddColumn(imageView, labelTitle, labelVersion, labelCopyright);
             layout.AddCentered(button);
-		}
-	}
+        }
+    }
 }

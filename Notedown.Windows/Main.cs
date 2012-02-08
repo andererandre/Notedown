@@ -13,10 +13,10 @@ namespace Notedown
             Style.Add<TextArea, Windows.TextBox>("TextConsole", (widget, control) => {
 				control.Font = new Font(FontFamily.GenericMonospace, 10);
             });
-			
+            
             var generator = Generator.GetGenerator("Eto.Platform.Windows.Generator, Eto.Platform.Windows");
             var app = new Program(generator);
             app.Run();
         }
-	}
+    }
 }
