@@ -27,15 +27,14 @@ namespace Notedown.Actions
                 MessageBox.Show(form, "No notes available.", MessageBoxButtons.OK, MessageBoxType.Error);
                 return;
             }
+            
+            string capt = form.Notes.CurrentNote.Name;
+            string text = "Do you really want to delete this note?";
 			
-			// show the about dialog
-			var dialog = new Dialogs.Delete();
-			dialog.ShowDialog(Application.Instance.MainForm);
-            if (dialog.DialogResult == DialogResult.Yes)
+            if (MessageBox.Show(form, text, capt, MessageBoxButtons.YesNo, MessageBoxType.Question) == DialogResult.Yes)
             {
                 form.Notes.DeleteNote();
             }
 		}
 	}
 }
-

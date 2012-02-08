@@ -5,34 +5,35 @@ using Eto.Misc;
 
 namespace Notedown.Dialogs
 {
-	public class New : Dialog
-	{
-        public TextBox TextBoxName { get; private set; }
+    public class Input : Dialog
+    {
+        private TextBox textBox;
+        public string Data { get { return textBox.Text; } }
         
-		public New()
-		{
+        public Input(string caption, string text)
+        {
             /* dialog attributes */
             
-			this.Text = "New Note";
+            this.Text = caption;
             this.ClientSize = new Size(400, 120);
-			this.Resizable = false;
+            this.Resizable = false;
             
             /* dialog controls */
             
-            var groupBoxName = new GroupBox();
-            groupBoxName.Text = "Name of the new note";
+            var groupBox = new GroupBox();
+            groupBox.Text = text;
             
-            var textBoxName = new TextBox();
-            textBoxName.Size = new Size(200, 20);
+            var textBox = new TextBox();
+            textBox.Size = new Size(200, 20);
             
-			var buttonOk = new Button();
+            var buttonOk = new Button();
             buttonOk.Text = "Ok";
-			buttonOk.Size = new Size(90, 26);
-			buttonOk.Click += delegate
+            buttonOk.Size = new Size(90, 26);
+            buttonOk.Click += delegate
             {
                 this.DialogResult = DialogResult.Ok;
                 this.Close();
-			};
+            };
             
             var buttonCancel = new Button();
             buttonCancel.Text = "Cancel";
@@ -45,15 +46,15 @@ namespace Notedown.Dialogs
             
             /* dialog layout */
             
-            var layoutName = new DynamicLayout(groupBoxName);
+            var layoutName = new DynamicLayout(groupBox);
             layoutName.BeginVertical();
-            layoutName.Add(textBoxName);
+            layoutName.Add(textBox);
             layoutName.EndVertical();
             
             var layout = new DynamicLayout(this);
             layout.BeginVertical(new Padding(10, 5), new Size(10, 10));
             
-            layout.Add(groupBoxName);
+            layout.Add(groupBox);
             
             layout.BeginVertical(Padding.Empty, Size.Empty);
             layout.BeginHorizontal();
@@ -68,8 +69,7 @@ namespace Notedown.Dialogs
             
             /* dialog accessors */
             
-            TextBoxName = textBoxName;
-		}
-	}
+            this.textBox = textBox;
+        }
+    }
 }
-

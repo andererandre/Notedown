@@ -20,10 +20,8 @@ namespace Notedown.Actions
 		{
 			base.OnActivated(e);
 			
-			// show the about dialog
 			var about = new Dialogs.About();
 			about.ShowDialog(Application.Instance.MainForm);
 		}
 	}
 }
-

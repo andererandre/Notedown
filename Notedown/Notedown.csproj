@@ -47,19 +47,17 @@
     <Compile Include="Actions\Close.cs" />
     <Compile Include="Actions\Quit.cs" />
     <Compile Include="Actions\New.cs" />
-    <Compile Include="Dialogs\New.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Data\Note.cs" />
     <Compile Include="Actions\Save.cs" />
     <Compile Include="Actions\Delete.cs" />
-    <Compile Include="Dialogs\Delete.cs" />
     <Compile Include="Data\Preferences.cs" />
     <Compile Include="Dialogs\Preferences.cs" />
     <Compile Include="Actions\Preferences.cs" />
-    <Compile Include="Dialogs\Rename.cs" />
     <Compile Include="Actions\Rename.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Data\NoteView.cs" />
+    <Compile Include="Dialogs\Input.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="..\" />

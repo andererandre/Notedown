@@ -28,12 +28,11 @@ namespace Notedown.Actions
                 return;
             }
             
-            // create new note
-            var dialog = new Dialogs.Rename();
-            dialog.ShowDialog(Application.Instance.MainForm);
-            if (dialog.DialogResult == DialogResult.Ok)
+            var dialog = new Dialogs.Input("Rename Note", "Rename note '" + form.Notes.CurrentNote.Name + "'");
+            
+            if (dialog.ShowDialog(Application.Instance.MainForm) == DialogResult.Ok)
             {
-                if (form.Notes.CurrentNote.Rename(dialog.TextBoxName.Text))
+                if (form.Notes.CurrentNote.Rename(dialog.Data))
                 {
                     form.Notes.ListBox.Invalidate();
                 }
@@ -42,4 +41,3 @@ namespace Notedown.Actions
 		}
 	}
 }
-

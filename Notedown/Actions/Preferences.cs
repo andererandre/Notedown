@@ -20,7 +20,6 @@ namespace Notedown.Actions
 		{
 			base.OnActivated(e);
             
-            // open preferences
             var dialog = new Dialogs.Preferences();
             dialog.ShowDialog(Application.Instance.MainForm);
             if (dialog.DialogResult == DialogResult.Ok)
@@ -32,4 +31,3 @@ namespace Notedown.Actions
 		}
 	}
 }
-

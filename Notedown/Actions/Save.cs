@@ -20,9 +20,9 @@ namespace Notedown.Actions
 		protected override void OnActivated(EventArgs e)
 		{
 			base.OnActivated(e);
+            var form = (MainForm)Application.Instance.MainForm;
             
-            ((MainForm)Application.Instance.MainForm).Notes.Save();
+            form.Notes.Save();
 		}
 	}
 }
-
