@@ -69,6 +69,8 @@ namespace Notedown.Dialogs
             
             /* dialog accessors */
             
+            this.DefaultButton = buttonOk;
+            this.AbortButton = buttonCancel;
             this.textBox = textBox;
         }
     }

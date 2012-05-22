@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using System.IO;
 using System.ComponentModel;
@@ -23,13 +23,18 @@ namespace Notedown
             this.Closing += HandleClosing;
         }
         
-        private void HandleLoad(object sender, EventArgs e)
+        public void Update()
         {
             Preferences.Load();
             Notes = NoteView.CreateFromDirectory(Preferences.Folder);
             
             GenerateActions();
             GenerateContent();
+        }
+        
+        private void HandleLoad(object sender, EventArgs e)
+        {
+            Update();
         }
         
         private void HandleClosing(object sender, CancelEventArgs e)

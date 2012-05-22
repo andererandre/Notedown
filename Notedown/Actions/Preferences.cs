@@ -27,7 +27,7 @@ namespace Notedown.Actions
             {
                 Notedown.Preferences.Folder = dialog.TextBoxFolder.Text;
                 Notedown.Preferences.Save();
-                form.Load(null, null);
+                form.Update();
             }
         }
     }

@@ -31,14 +31,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Eto">
-      <HintPath>..\..\.References\Eto.dll</HintPath>
-    </Reference>
-    <Reference Include="Eto.Platform.Mac">
-      <HintPath>..\..\.References\Eto.Platform.Mac.dll</HintPath>
-    </Reference>
     <Reference Include="MonoMac">
       <HintPath>..\..\.References\MonoMac.dll</HintPath>
+    </Reference>
+    <Reference Include="Eto">
+      <HintPath>..\Eto\Release\Eto.dll</HintPath>
+    </Reference>
+    <Reference Include="Eto.Platform.Mac">
+      <HintPath>..\Eto\Release\Eto.Platform.Mac.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
