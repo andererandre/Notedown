@@ -34,14 +34,14 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Eto">
-      <HintPath>..\..\.References\Eto.dll</HintPath>
-    </Reference>
-    <Reference Include="Eto.Platform.Gtk">
-      <HintPath>..\..\.References\Eto.Platform.Gtk.dll</HintPath>
-    </Reference>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+    </Reference>
+    <Reference Include="Eto">
+      <HintPath>..\Eto\Release\Eto.dll</HintPath>
+    </Reference>
+    <Reference Include="Eto.Platform.Gtk">
+      <HintPath>..\Eto\Release\Eto.Platform.Gtk.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
