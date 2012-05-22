@@ -15,7 +15,7 @@ namespace Notedown
         public MainForm()
         {
             this.Text = "Notedown";
-            this.Icon = new Icon(null, "Icon.ico");
+            this.Icon = Icon.FromResource("Icon.ico");
             this.Size = new Size(1280, 800);
             this.Style = "MainWindow";
             

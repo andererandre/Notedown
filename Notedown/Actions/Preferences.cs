@@ -13,7 +13,7 @@ namespace Notedown.Actions
             this.ID = ActionID;
             this.MenuText = "Preferences";
             this.ToolBarText = "Preferences";
-            this.Icon = new Icon(null, "Notedown.Resources.toolbar-preferences.ico");
+            this.Icon = Icon.FromResource("Notedown.Resources.toolbar-preferences.ico");
         }
         
         protected override void OnActivated(EventArgs e)

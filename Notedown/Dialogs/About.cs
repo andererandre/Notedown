@@ -19,7 +19,7 @@ namespace Notedown.Dialogs
             /* dialog controls */
             
             var imageView = new ImageView();
-            imageView.Image = new Icon(null, "Icon.ico");
+            imageView.Image = Icon.FromResource("Icon.ico");
             imageView.Size = new Size(128, 128);
             
             var labelTitle = new Label();

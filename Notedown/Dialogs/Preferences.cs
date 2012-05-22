@@ -5,17 +5,17 @@ using Eto.Misc;
 
 namespace Notedown.Dialogs
 {
-	public class Preferences : Dialog
-	{
+    public class Preferences : Dialog
+    {
         public TextBox TextBoxFolder { get; private set; }
         
 		public Preferences()
 		{
             /* dialog attributes */
             
-			this.Text = "Preferences";
-			this.ClientSize = new Size(400, 120);
-			this.Resizable = false;
+            this.Text = "Preferences";
+            this.ClientSize = new Size(400, 120);
+            this.Resizable = false;
             
             /* dialog controls */
             
@@ -25,14 +25,14 @@ namespace Notedown.Dialogs
             var textBoxFolder = new TextBox();
             textBoxFolder.Text = Notedown.Preferences.Folder;
             
-			var buttonOk = new Button();
+            var buttonOk = new Button();
             buttonOk.Text = "Ok";
-			buttonOk.Size = new Size(90, 26);
-			buttonOk.Click += delegate
+            buttonOk.Size = new Size(90, 26);
+            buttonOk.Click += delegate
             {
                 this.DialogResult = DialogResult.Ok;
                 this.Close();
-			};
+            };
             
             var buttonCancel = new Button();
             buttonCancel.Text = "Cancel";
@@ -69,6 +69,6 @@ namespace Notedown.Dialogs
             /* dialog accessors */
             
             TextBoxFolder = textBoxFolder;
-		}
-	}
+        }
+    }
 }

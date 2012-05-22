@@ -13,7 +13,7 @@ namespace Notedown.Actions
             this.ID = ActionID;
             this.MenuText = "&Rename";
             this.ToolBarText = "Rename";
-            this.Icon = new Icon(null, "Notedown.Resources.toolbar-rename.ico");
+            this.Icon = Icon.FromResource("Notedown.Resources.toolbar-rename.ico");
             this.Accelerator = Application.Instance.CommonModifier | Key.R;
         }
         
