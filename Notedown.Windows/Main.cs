@@ -3,19 +3,20 @@ using System.Drawing;
 using Eto;
 using Eto.Forms;
 using Windows = System.Windows.Forms;
+using Eto.WinForms.Forms.Controls;
 
 namespace Notedown
 {
     class Startup
     {
+		[STAThread]
         static void Main(string[] args)
         {
-            Style.Add<TextArea, Windows.TextBox>("TextConsole", (widget, control) => {
-				control.Font = new Font(FontFamily.GenericMonospace, 10);
+            Style.Add<TextAreaHandler>("TextConsole", handler => {
+				handler.Control.Font = new Font(FontFamily.GenericMonospace, 10);
             });
-            
-            var generator = Generator.GetGenerator("Eto.Platform.Windows.Generator, Eto.Platform.Windows");
-            var app = new Program(generator);
+
+            var app = new Program(Eto.Platforms.WinForms);
             app.Run();
         }
     }

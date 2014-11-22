@@ -1,21 +1,24 @@
 using System;
 using System.Text;
 using System.IO;
+using Eto.Forms;
 
 namespace Notedown
 {
-    public class Note : Eto.Forms.IListItem
+    public class Note : IListItem
     {
         public string Name    { get; private set; }
         public string Dir     { get; private set; }
         public string Content { get; set; }
         public bool   Changed { get { return !File.Exists(Dir) || File.ReadAllText(Dir, Encoding.UTF8) != Content; } }
+        public Range<int> Selection { get; set; }
         
         public Note(string name, string text, string path)
         {
             Name = name;
             Content = text;
             Dir = path;
+            Selection = new Range<int>(0, -1);
         }
         
         public void Delete()
@@ -51,6 +54,7 @@ namespace Notedown
         public string Text
         {
             get { return Changed ? "[*] " + Name : Name; }
+            set { }
         }
         
         public string Key
