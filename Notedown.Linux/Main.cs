@@ -8,8 +8,7 @@ namespace Notedown
     {
         static void Main(string[] args)
         {
-            var generator = Generator.GetGenerator("Eto.Platform.GtkSharp.Generator, Eto.Platform.Gtk");
-            var app = new Program(generator);
+            var app = new Program(Eto.Platforms.Gtk2);
             app.Run();
         }
     }

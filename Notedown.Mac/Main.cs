@@ -3,6 +3,10 @@ using Eto;
 using Eto.Forms;
 using MonoMac.AppKit;
 using MonoMac.Foundation;
+using Eto.Mac;
+using Eto.Mac.Forms;
+using Eto.Mac.Forms.Controls;
+using Eto.Mac.Forms.ToolBar;
 
 namespace Notedown
 {
@@ -10,29 +14,26 @@ namespace Notedown
     {
         static void Main(string[] args)
         {
-            Style.Add<ListBox, NSScrollView>("ListNative", (widget, control) => {
-                control.BorderType = NSBorderType.NoBorder;
-                var list = control.DocumentView as NSTableView;
-                list.SelectionHighlightStyle = NSTableViewSelectionHighlightStyle.SourceList;
+            Style.Add<ListBoxHandler>("ListNative", handler => {
+                handler.Scroll.BorderType = NSBorderType.NoBorder;
+                handler.Control.SelectionHighlightStyle = NSTableViewSelectionHighlightStyle.SourceList;
             });
             
-            Style.Add<TextArea, NSScrollView>("TextConsole", (widget, control) => {
-                control.BorderType = NSBorderType.NoBorder;
-                var textbox = control.DocumentView as NSTextView;
-                textbox.RichText = false;
-                textbox.Font = NSFont.FromFontName("Monaco", 12);
+            Style.Add<TextAreaHandler>("TextConsole", handler => {
+                handler.Scroll.BorderType = NSBorderType.NoBorder;
+                handler.Control.RichText = false;
+                handler.Control.Font = NSFont.FromFontName("Monaco", 12);
             });
             
-            Style.Add<ToolBar, NSToolbar>("ToolBar", (widget, control) => {
-                control.DisplayMode = NSToolbarDisplayMode.Icon;
+            Style.Add<ToolBarHandler>("ToolBar", handler => {
+                handler.Control.DisplayMode = NSToolbarDisplayMode.Icon;
             });
             
-            Style.Add<Window, NSWindow> ("MainWindow", (widget, control) => {
-                control.CollectionBehavior |= NSWindowCollectionBehavior.FullScreenPrimary;
+            Style.Add<FormHandler> ("MainWindow", handler => {
+                handler.Control.CollectionBehavior |= NSWindowCollectionBehavior.FullScreenPrimary;
             });
             
-            var generator = Generator.GetGenerator("Eto.Platform.Mac.Generator, Eto.Platform.Mac");
-            var app = new Program(generator);
+            var app = new Program(Eto.Platforms.Mac);
             app.Run();
         }
     }

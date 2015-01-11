@@ -2,7 +2,6 @@ using System;
 using System.Reflection;
 using Eto.Drawing;
 using Eto.Forms;
-using Eto.Misc;
 
 namespace Notedown.Dialogs
 {
@@ -12,8 +11,8 @@ namespace Notedown.Dialogs
         {
             /* dialog attributes */
             
-            this.Text = "About Notedown";
-            this.ClientSize = new Size(300, 280);
+            this.Title = "About Notedown";
+            this.MinimumSize = new Size(300, 0);
             this.Resizable = false;
             
             /* dialog controls */
@@ -24,8 +23,7 @@ namespace Notedown.Dialogs
             
             var labelTitle = new Label();
             labelTitle.Text = "Notedown";
-            labelTitle.Size = new Size(240, 24);
-            labelTitle.Font = new Font(FontFamily.Sans, 16);
+            labelTitle.Font = new Font(FontFamilies.Sans, 16);
             labelTitle.HorizontalAlign = HorizontalAlign.Center;
             
             var version = Assembly.GetExecutingAssembly().GetName().Version;
@@ -39,17 +37,22 @@ namespace Notedown.Dialogs
             
             var button = new Button();
             button.Text = "Close";
-            button.Size = new Size(90, 26);
-            button.Click += delegate
-            {
-                Close();
-            };
+            button.Click += (sender, e) => Close();
             
             /* dialog layout */
             
-            var layout = new DynamicLayout(this);
-            layout.AddColumn(imageView, labelTitle, labelVersion, labelCopyright);
-            layout.AddCentered(button);
+            Content = new TableLayout
+            {
+                Padding = new Padding(10),
+                Spacing = new Size(5, 5),
+                Rows =
+                {
+                    imageView, labelTitle, labelVersion, labelCopyright,
+                    TableLayout.AutoSized(button, centered: true)
+                }
+            };
+
+            AbortButton = DefaultButton = button;
         }
     }
 }

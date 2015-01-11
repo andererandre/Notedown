@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleIconFile</key>
+	<string>Icon.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>net.modmonkeys.notedown</string>
 	<key>CFBundleName</key>
@@ -11,10 +13,8 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.6</string>
 	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
+	<string></string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>CFBundleIconFile</key>
-	<string>Icon.icns</string>
 </dict>
 </plist>

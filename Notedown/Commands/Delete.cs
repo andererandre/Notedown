@@ -2,24 +2,21 @@ using System;
 using Eto.Forms;
 using Eto.Drawing;
 
-namespace Notedown.Actions
+namespace Notedown.Commands
 {
-    public class Delete : ButtonAction
+    public class Delete : Command
     {
-        public const string ActionID = "delete";
-        
         public Delete()
         {
-            this.ID = ActionID;
             this.MenuText = "&Delete";
             this.ToolBarText = "Delete";
-            this.Icon = Icon.FromResource("Notedown.Resources.toolbar-remove.ico");
-            this.Accelerator = Application.Instance.CommonModifier | Key.D;
+            this.Image = Icon.FromResource("Notedown.Resources.toolbar-remove.ico");
+            this.Shortcut = Application.Instance.CommonModifier | Keys.D;
         }
-        
-        protected override void OnActivated(EventArgs e)
+
+        protected override void OnExecuted(EventArgs e)
         {
-            base.OnActivated(e);
+            base.OnExecuted(e);
             var form = (MainForm)Application.Instance.MainForm;
             
             if (form.Notes.Count == 0)

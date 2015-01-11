@@ -3,13 +3,14 @@ using System.Text;
 using System.IO;
 using System.Configuration;
 using Eto.Forms;
+using Eto;
 
 namespace Notedown
 {
     public static class Preferences
     {
-        private static Configuration config;
-        private static string defaultFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + Path.DirectorySeparatorChar + "Notedown" + Path.DirectorySeparatorChar;
+        static Configuration config;
+        static string defaultFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + Path.DirectorySeparatorChar + "Notedown" + Path.DirectorySeparatorChar;
         
         public static void Load()
         {

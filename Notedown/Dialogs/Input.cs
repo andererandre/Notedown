@@ -1,77 +1,76 @@
 using System;
 using Eto.Drawing;
 using Eto.Forms;
-using Eto.Misc;
+using System.ComponentModel;
 
 namespace Notedown.Dialogs
 {
-    public class Input : Dialog
+    public class Input : Dialog<bool>, INotifyPropertyChanged
     {
-        private TextBox textBox;
-        public string Data { get { return textBox.Text; } }
-        
+        string data;
+
+        public string Data
+        {
+            get { return data; }
+            set
+            {
+                data = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Data"));
+            }
+        }
+
         public Input(string caption, string text)
         {
             /* dialog attributes */
             
-            this.Text = caption;
-            this.ClientSize = new Size(400, 120);
-            this.Resizable = false;
+            Title = caption;
+            MinimumSize = new Size(400, 0);
+            Resizable = false;
             
             /* dialog controls */
             
-            var groupBox = new GroupBox();
-            groupBox.Text = text;
-            
             var textBox = new TextBox();
-            textBox.Size = new Size(200, 20);
+            textBox.TextBinding.Bind(this, r => r.Data);
             
-            var buttonOk = new Button();
-            buttonOk.Text = "Ok";
-            buttonOk.Size = new Size(90, 26);
-            buttonOk.Click += delegate
-            {
-                this.DialogResult = DialogResult.Ok;
-                this.Close();
-            };
+            var buttonOk = new Button { Text = "Ok" };
+            buttonOk.Click += (sender, e) => Close(true);
             
-            var buttonCancel = new Button();
-            buttonCancel.Text = "Cancel";
-            buttonCancel.Size = new Size(90, 26);
-            buttonCancel.Click += delegate
-            {
-                this.DialogResult = DialogResult.Cancel;
-                this.Close();
-            };
+            var buttonCancel = new Button { Text = "Cancel" };
+            buttonCancel.Click += (sender, e) => Close(false);
             
             /* dialog layout */
-            
-            var layoutName = new DynamicLayout(groupBox);
-            layoutName.BeginVertical();
-            layoutName.Add(textBox);
-            layoutName.EndVertical();
-            
-            var layout = new DynamicLayout(this);
-            layout.BeginVertical(new Padding(10, 5), new Size(10, 10));
-            
-            layout.Add(groupBox);
-            
-            layout.BeginVertical(Padding.Empty, Size.Empty);
-            layout.BeginHorizontal();
-            layout.Add(null, true);
-            layout.Add(buttonCancel);
-            layout.Add(buttonOk);
-            layout.Add(null, true);
-            layout.EndHorizontal();
-            layout.EndVertical();
-            
-            layout.EndVertical();
+
+            var groupBox = new GroupBox
+            {
+                Text = text,
+                Content = new TableLayout
+                { 
+                    Padding = new Padding(10), 
+                    Rows = { textBox } 
+                }
+            };
+
+            Content = new TableLayout
+            {
+                Padding = new Padding(10),
+                Rows =
+                {
+                    groupBox,
+                    TableLayout.Horizontal(null, buttonCancel, buttonOk, null).With(r => r.Spacing = new Size(5, 5))
+                }
+            };
             
             /* dialog accessors */
             
-            this.DefaultButton = buttonOk;
-            this.AbortButton = buttonCancel;
-            this.textBox = textBox;
+            DefaultButton = buttonOk;
+            AbortButton = buttonCancel;
         }
+
+        #region INotifyPropertyChanged implementation
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
     }
 }

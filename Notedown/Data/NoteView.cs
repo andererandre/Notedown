@@ -2,52 +2,73 @@ using System;
 using System.Text;
 using System.IO;
 using System.Collections.Generic;
+using Eto.Forms;
 
 namespace Notedown
 {
     public class NoteView
     {
-        private string directory;
-        private List<Note> notes;
-        
-        public Eto.Forms.ListBox  ListBox  { get; private set; }
-        public Eto.Forms.TextArea TextArea { get; private set; }
-        
+        string directory;
+        List<Note> notes;
+
+        public ListBox  ListBox  { get; private set; }
+
+        public TextArea TextArea { get; private set; }
+
         public bool Changed
         {
             get
             {
                 foreach (Note note in notes)
                 {
-                    if (note.Changed) return true;
+                    if (note.Changed)
+                        return true;
                 }
                 return false;
             }
         }
-        
+
         public NoteView(string dir)
         {
             directory = dir;
             notes = new List<Note>();
             
-            ListBox  = new Eto.Forms.ListBox()  { Style = "ListNative" };
-            TextArea = new Eto.Forms.TextArea() { Style = "TextConsole" };
+            ListBox = new ListBox { Style = "ListNative" };
+            TextArea = new TextArea { Style = "TextConsole" };
+
+            var updatingNote = false;
             
             TextArea.TextChanged += delegate
             {
-                if (ListBox.SelectedIndex < 0) return;
-                bool changed = notes[ListBox.SelectedIndex].Changed;
-                notes[ListBox.SelectedIndex].Content = TextArea.Text;
-                if (changed != notes[ListBox.SelectedIndex].Changed) ListBox.Invalidate();
+                if (ListBox.SelectedIndex < 0)
+                    return;
+                var note = notes[ListBox.SelectedIndex];
+                bool changed = note.Changed;
+                note.Content = TextArea.Text;
+                if (changed != note.Changed)
+                    ListBox.Invalidate();
+            };
+
+            TextArea.SelectionChanged += delegate
+            {
+                if (ListBox.SelectedIndex < 0 || updatingNote)
+                    return;
+                notes[ListBox.SelectedIndex].Selection = TextArea.Selection;
             };
             
             ListBox.SelectedIndexChanged += delegate
             {
-                if (ListBox.SelectedIndex < 0) return;
-                TextArea.Text = notes[ListBox.SelectedIndex].Content;
+                if (ListBox.SelectedIndex < 0)
+                    return;
+                var note = notes[ListBox.SelectedIndex];
+                updatingNote = true;
+                TextArea.Text = note.Content;
+                TextArea.Selection = note.Selection;
+                TextArea.Focus();
+                updatingNote = false;
             };
         }
-        
+
         public int Count
         {
             get
@@ -55,8 +76,8 @@ namespace Notedown
                 return notes.Count;
             }
         }
-        
-        public Note this[int i]
+
+        public Note this [int i]
         {
             get
             {
@@ -67,30 +88,43 @@ namespace Notedown
                 notes[i] = value;
             }
         }
-        
+
         public Note CurrentNote
         {
             get { return ListBox.SelectedIndex >= 0 ? notes[ListBox.SelectedIndex] : null; }
         }
-        
-        public void AddNote(string name) { AddNote(name, string.Empty, directory + name + ".txt"); }
+
+        public void AddNote(string name)
+        {
+            AddNote(name, string.Empty, directory + name + ".txt");
+        }
+
         public void AddNote(string name, string text, string file)
         {
-            Note note = new Note(name, text, file);
+            var note = new Note(name, text, file);
             notes.Add(note);
             ListBox.Items.Add(note);
-            if (ListBox.SelectedIndex < 0) ListBox.SelectedIndex = 0;
+            if (ListBox.SelectedIndex < 0)
+                ListBox.SelectedIndex = 0;
         }
-        
-        public void DeleteNote() { DeleteNote(ListBox.SelectedIndex); }
-        public void DeleteNote(Note note) { DeleteNote(ListBox.Items.IndexOf(note)); }
+
+        public void DeleteNote()
+        {
+            DeleteNote(ListBox.SelectedIndex);
+        }
+
+        public void DeleteNote(Note note)
+        {
+            DeleteNote(ListBox.Items.IndexOf(note));
+        }
+
         public void DeleteNote(int index)
         {
             notes[index].Delete();
             notes.RemoveAt(index);
             ListBox.Items.RemoveAt(index);
         }
-        
+
         public void Save()
         {
             if (!Directory.Exists(directory))
@@ -103,12 +137,13 @@ namespace Notedown
             }
             ListBox.Invalidate();
         }
-        
+
         public static NoteView CreateFromDirectory(string dir)
         {
-            NoteView result = new NoteView(dir);
+            var result = new NoteView(dir);
             
-            if (!Directory.Exists(dir)) return result;
+            if (!Directory.Exists(dir))
+                return result;
             
             string[] files = Directory.GetFiles(dir);
             if (files.Length != 0)
@@ -123,6 +158,29 @@ namespace Notedown
             }
             
             return result;
+        }
+
+        public void GenerateMenu(ISubmenu subMenu)
+        {
+            var file = subMenu.Items.GetSubmenu("&File");
+
+            file.Items.AddSeparator(600);
+            file.Items.Add(new Commands.NextNote(this), 600);
+            file.Items.Add(new Commands.PreviousNote(this), 600);
+            file.Items.AddSeparator(600);
+        }
+
+        public void GoToNextNote()
+        {
+            ListBox.SelectedIndex = (ListBox.SelectedIndex + 1) % ListBox.Items.Count;
+        }
+
+        public void GoToPreviousNote()
+        {
+            var index = ListBox.SelectedIndex - 1;
+            while (index < 0)
+                index += ListBox.Items.Count;
+            ListBox.SelectedIndex = index;
         }
     }
 }

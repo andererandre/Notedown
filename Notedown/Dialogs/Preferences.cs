@@ -1,74 +1,88 @@
 using System;
 using Eto.Drawing;
 using Eto.Forms;
-using Eto.Misc;
+using System.ComponentModel;
 
 namespace Notedown.Dialogs
 {
-    public class Preferences : Dialog
+    public class Preferences : Dialog<bool>, INotifyPropertyChanged
     {
-        public TextBox TextBoxFolder { get; private set; }
-        
-		public Preferences()
-		{
+        string folder;
+
+        public string Folder
+        {
+            get { return folder; }
+            set
+            {
+                folder = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Folder"));
+            }
+        }
+
+        public Preferences()
+        {
             /* dialog attributes */
             
-            this.Text = "Preferences";
-            this.ClientSize = new Size(400, 120);
-            this.Resizable = false;
+            Title = "Preferences";
+            MinimumSize = new Size(400, 0);
+            Resizable = false;
             
             /* dialog controls */
             
-            var groupBoxFolder = new GroupBox();
-            groupBoxFolder.Text = "Notes folder";
-            
             var textBoxFolder = new TextBox();
-            textBoxFolder.Text = Notedown.Preferences.Folder;
+            textBoxFolder.TextBinding.Bind(this, r => r.Folder);
             
-            var buttonOk = new Button();
-            buttonOk.Text = "Ok";
-            buttonOk.Size = new Size(90, 26);
-            buttonOk.Click += delegate
-            {
-                this.DialogResult = DialogResult.Ok;
-                this.Close();
-            };
+            var buttonOk = new Button { Text = "Ok" };
+            buttonOk.Click += (sender, e) => Close(true);
             
-            var buttonCancel = new Button();
-            buttonCancel.Text = "Cancel";
-            buttonCancel.Size = new Size(90, 26);
-            buttonCancel.Click += delegate
+            var buttonCancel = new Button { Text = "Cancel" };
+            buttonCancel.Click += (sender, e) => Close(false);
+
+            var buttonSelect = new Button { Text = "Select Folder" };
+            buttonSelect.Click += (sender, e) =>
             {
-                this.DialogResult = DialogResult.Cancel;
-                this.Close();
+                var dlg = new SelectFolderDialog { Directory = Folder };
+                if (dlg.ShowDialog(this) == DialogResult.Ok)
+                    Folder = dlg.Directory;
             };
             
             /* dialog layout */
+
+            var groupBoxFolder = new GroupBox
+            {
+                Text = "Notes folder",
+                Content = new TableLayout
+                { 
+                    Padding = new Padding(10), 
+                    Rows =
+                    { 
+                        new TableRow(new TableCell(new TableLayout(null, textBoxFolder, null), true), buttonSelect)
+                    } 
+                }
+            };
+
+            Content = new TableLayout
+            {
+                Padding = new Padding(10),
+                Spacing = new Size(5, 5),
+                Rows =
+                {
+                    groupBoxFolder,
+                    TableLayout.Horizontal(null, buttonCancel, buttonOk, null).With(r => r.Spacing = new Size(5, 5))
+                }
+            };
+
+            /* default accessors */
             
-            var layoutFolder = new DynamicLayout(groupBoxFolder);
-            layoutFolder.BeginVertical();
-            layoutFolder.Add(textBoxFolder);
-            layoutFolder.EndVertical();
-            
-            var layout = new DynamicLayout(this);
-            layout.BeginVertical(new Padding(10, 5), new Size(10, 10));
-            
-            layout.Add(groupBoxFolder);
-            
-            layout.BeginVertical(Padding.Empty, Size.Empty);
-            layout.BeginHorizontal();
-            layout.Add(null, true);
-            layout.Add(buttonCancel);
-            layout.Add(buttonOk);
-            layout.Add(null, true);
-            layout.EndHorizontal();
-            layout.EndVertical();
-            
-            layout.EndVertical();
-            
-            /* dialog accessors */
-            
-            TextBoxFolder = textBoxFolder;
+            DefaultButton = buttonOk;
+            AbortButton = buttonCancel;
         }
+
+        #region INotifyPropertyChanged implementation
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
     }
 }
